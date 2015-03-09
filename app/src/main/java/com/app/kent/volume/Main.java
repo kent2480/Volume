@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -33,6 +35,10 @@ public class Main extends ActionBarActivity {
     private Button outdoor, mute, custom;
     private VolumeInfo mVolumeInfo;
 
+    // https://www.iconfinder.com/iconsets/slim-square-icons-basics
+    private ImageView musicUp, musicDown;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,19 @@ public class Main extends ActionBarActivity {
         getVolumeInfo();
         initSeekBar();
         setListener();
+    }
+
+    public void adjustVolume(View v) {
+        //Log.d(TAG, "view = " + v.getId());
+        switch (v.getId()) {
+            case R.id.iv_music_up:
+                Log.d(TAG, "Music up");
+                break;
+            case R.id.iv_music_down:
+                Log.d(TAG, "Music down");
+                break;
+        }
+
     }
 
     public void setListener() {
@@ -261,6 +280,9 @@ public class Main extends ActionBarActivity {
         outdoor = (Button) findViewById(R.id.button);
         mute = (Button) findViewById(R.id.button2);
         custom = (Button) findViewById(R.id.button3);
+
+        musicUp = (ImageView) findViewById(R.id.iv_music_up);
+        musicDown = (ImageView) findViewById(R.id.iv_music_down);
 
         mContext = this.getApplicationContext();
         mVolumeInfo = new VolumeInfo(mContext);

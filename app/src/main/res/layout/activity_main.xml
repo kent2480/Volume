@@ -24,19 +24,18 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="10dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Music:"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -45,36 +44,58 @@
                     android:id="@+id/tv_Music" />
             </LinearLayout>
 
+
             <SeekBar
-                android:layout_width="match_parent"
+                android:layout_width="450dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:id="@+id/seekBar"/>
+                android:layout_marginLeft="5dp"
+                android:id="@+id/seekBar"
+                android:paddingTop="15dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_music_up"
+                    android:src="@drawable/up"
+                    android:onClick="adjustVolume"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_music_down"
+                    android:src="@drawable/down"
+                    android:onClick="adjustVolume"/>
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <View
             android:background="#000000"
             android:layout_width="fill_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/seekBar" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
+            android:layout_marginTop="15dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Alarm:"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -84,28 +105,47 @@
             </LinearLayout>
 
             <SeekBar
-                android:layout_width="match_parent"
+                android:layout_width="450dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="15dp"
                 android:id="@+id/seekBar2"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_alarm_up"
+                    android:src="@drawable/up" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_alarm_down"
+                    android:src="@drawable/down" />
+            </LinearLayout>
         </LinearLayout>
 
         <View
             android:background="#000000"
             android:layout_width="fill_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/seekBar2" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp">
+            android:layout_marginTop="20dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -122,16 +162,34 @@
             </LinearLayout>
 
             <SeekBar
-                android:layout_width="match_parent"
+                android:layout_width="450dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="15dp"
                 android:id="@+id/seekBar3"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_noti_up"
+                    android:src="@drawable/up" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_noti_down"
+                    android:src="@drawable/down" />
+            </LinearLayout>
         </LinearLayout>
 
         <View
             android:background="#000000"
             android:layout_width="fill_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/seekBar3" />
 
 
@@ -139,12 +197,13 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp">
+            android:layout_marginTop="25dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -161,28 +220,47 @@
             </LinearLayout>
 
             <SeekBar
-                android:layout_width="match_parent"
+                android:layout_width="450dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="15dp"
                 android:id="@+id/seekBar4"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_ring_up"
+                    android:src="@drawable/up" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_ring_down"
+                    android:src="@drawable/down" />
+            </LinearLayout>
         </LinearLayout>
 
         <View
             android:background="#000000"
             android:layout_width="fill_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/seekBar4" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp">
+            android:layout_marginTop="30dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -199,28 +277,47 @@
             </LinearLayout>
 
             <SeekBar
-                android:layout_width="match_parent"
+                android:layout_width="450dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="15dp"
                 android:id="@+id/seekBar5"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_sys_up"
+                    android:src="@drawable/up" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_sys_down"
+                    android:src="@drawable/down" />
+            </LinearLayout>
         </LinearLayout>
 
         <View
             android:background="#000000"
             android:layout_width="fill_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/seekBar5" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="65dp">
+            android:layout_marginTop="35dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -237,16 +334,34 @@
             </LinearLayout>
 
             <SeekBar
-                android:layout_width="match_parent"
+                android:layout_width="450dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="5dp"
+                android:paddingTop="15dp"
                 android:id="@+id/seekBar6"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_voice_up"
+                    android:src="@drawable/up" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_voice_down"
+                    android:src="@drawable/down" />
+            </LinearLayout>
         </LinearLayout>
 
         <View
             android:background="#000000"
             android:layout_width="fill_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/seekBar6" />
 
         <LinearLayout
