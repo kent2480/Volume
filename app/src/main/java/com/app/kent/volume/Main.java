@@ -1,16 +1,22 @@
 package com.app.kent.volume;
 
 import android.content.Context;
+import android.graphics.drawable.PaintDrawable;
 import android.media.AudioManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -24,9 +30,10 @@ import android.widget.TextView;
  * STREAM_SYSTEM 7
  * STREAM_VOICE_CALL*/
 public class Main extends ActionBarActivity {
-    private final static String TAG = "VolumnMain";
+    private final static String TAG = "VolumeMain";
     private final static boolean Debug = false;
     private Context mContext;
+    private DisplayMetrics dm;
     private AudioManager am;
     private SeekBar sbMusic, sbAlarm, sbNotification, sbRing, sbSystem, sbVoice;
     private int musicMax, alarmMax, notificationMax, ringMax, systemMax, voiceMax;
@@ -42,25 +49,163 @@ public class Main extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_main);
 
         initView();
         getVolumeInfo();
         initSeekBar();
         setListener();
+
+        dm = mContext.getResources().getDisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        // FE375CG: 1216*800 scale = 1.332501
+        // Nexus2:  1824*1200 scale = 2.0
+        // Zenfone: 1280*720 scale = 2.0
+        Log.d(TAG, "Height = " + dm.heightPixels + ", width = " + dm.widthPixels);
+        Log.d(TAG, "Density = " + dm.density);
+        Log.d(TAG, "DensityDpi = " + dm.densityDpi);
+        Log.d(TAG, "X dpi = " + dm.xdpi);
+        Log.d(TAG, "Y dpi = " + dm.ydpi);
+        float scale = getApplicationContext().getResources().getDisplayMetrics().density;
+        Log.d(TAG, "Scale = " + scale);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Log.d(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Log.d(TAG, "onResume");
     }
 
     public void adjustVolume(View v) {
         //Log.d(TAG, "view = " + v.getId());
         switch (v.getId()) {
             case R.id.iv_music_up:
-                Log.d(TAG, "Music up");
+                musicVolume = mVolumeInfo.getVolume(0);
+                if(musicVolume < musicMax) {
+                    musicVolume++;
+                }
+                am.setStreamVolume(AudioManager.STREAM_MUSIC, musicVolume, 0);
+                sbMusic.setProgress(musicVolume);
+                tvMusic.setText(musicVolume + "/" + musicMax);
                 break;
+
             case R.id.iv_music_down:
-                Log.d(TAG, "Music down");
+                musicVolume = mVolumeInfo.getVolume(0);
+                if(musicVolume > 0) {
+                    musicVolume--;
+                }
+                am.setStreamVolume(AudioManager.STREAM_MUSIC, musicVolume, 0);
+                sbMusic.setProgress(musicVolume);
+                tvMusic.setText(musicVolume + "/" + musicMax);
+                break;
+
+            case R.id.iv_alarm_up:
+                alarmVolume = mVolumeInfo.getVolume(1);
+                if(alarmVolume < alarmMax) {
+                    alarmVolume++;
+                }
+                am.setStreamVolume(AudioManager.STREAM_ALARM, alarmVolume, 0);
+                sbAlarm.setProgress(alarmVolume);
+                tvAlarm.setText(alarmVolume + "/" + alarmMax);
+                break;
+
+            case R.id.iv_alarm_down:
+                alarmVolume = mVolumeInfo.getVolume(1);
+                if(alarmVolume > 0) {
+                    alarmVolume--;
+                }
+                am.setStreamVolume(AudioManager.STREAM_ALARM, alarmVolume, 0);
+                sbAlarm.setProgress(alarmVolume);
+                tvAlarm.setText(alarmVolume + "/" + alarmMax);
+                break;
+
+            case R.id.iv_noti_up:
+                notificationVolumn = mVolumeInfo.getVolume(2);
+                if(notificationVolumn < notificationMax) {
+                    notificationVolumn++;
+                }
+                am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notificationVolumn, 0);
+                sbNotification.setProgress(notificationVolumn);
+                tvNotification.setText(notificationVolumn + "/" + notificationMax);
+                break;
+
+            case R.id.iv_noti_down:
+                notificationVolumn = mVolumeInfo.getVolume(2);
+                if(notificationVolumn > 0) {
+                    notificationVolumn--;
+                }
+                am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notificationVolumn, 0);
+                sbNotification.setProgress(notificationVolumn);
+                tvNotification.setText(notificationVolumn + "/" + notificationMax);
+                break;
+
+            case R.id.iv_ring_up:
+                ringVolume = mVolumeInfo.getVolume(3);
+                if(ringVolume < ringMax) {
+                    ringVolume++;
+                }
+                am.setStreamVolume(AudioManager.STREAM_RING, ringVolume, 0);
+                sbRing.setProgress(ringVolume);
+                tvRing.setText(ringVolume + "/" + ringMax);
+                break;
+
+            case R.id.iv_ring_down:
+                ringVolume = mVolumeInfo.getVolume(3);
+                if(ringVolume > 0) {
+                    ringVolume--;
+                }
+                am.setStreamVolume(AudioManager.STREAM_RING, ringVolume, 0);
+                sbRing.setProgress(ringVolume);
+                tvRing.setText(ringVolume + "/" + ringMax);
+                break;
+
+            case R.id.iv_sys_up:
+                systemVolume = mVolumeInfo.getVolume(4);
+                if(systemVolume < systemMax) {
+                    systemVolume++;
+                }
+                am.setStreamVolume(AudioManager.STREAM_SYSTEM, systemVolume, 0);
+                sbSystem.setProgress(systemVolume);
+                tvSystem.setText(systemVolume + "/" + systemMax);
+                break;
+
+            case R.id.iv_sys_down:
+                systemVolume = mVolumeInfo.getVolume(4);
+                if(systemVolume > 0) {
+                    systemVolume--;
+                }
+                am.setStreamVolume(AudioManager.STREAM_SYSTEM, systemVolume, 0);
+                sbSystem.setProgress(systemVolume);
+                tvSystem.setText(systemVolume + "/" + systemMax);
+                break;
+
+            case R.id.iv_voice_up:
+                voiceVolume = mVolumeInfo.getVolume(5);
+                if(voiceVolume < voiceMax) {
+                    voiceVolume++;
+                }
+                am.setStreamVolume(AudioManager.STREAM_VOICE_CALL, voiceVolume, 0);
+                sbVoice.setProgress(voiceVolume);
+                tvVoice.setText(voiceVolume + "/" + voiceMax);
+                break;
+
+            case R.id.iv_voice_down:
+                voiceVolume = mVolumeInfo.getVolume(5);
+                if(voiceVolume > 0) {
+                    voiceVolume--;
+                }
+                am.setStreamVolume(AudioManager.STREAM_VOICE_CALL, voiceVolume, 0);
+                sbVoice.setProgress(voiceVolume);
+                tvVoice.setText(voiceVolume + "/" + voiceMax);
                 break;
         }
-
     }
 
     public void setListener() {
@@ -73,7 +218,7 @@ public class Main extends ActionBarActivity {
                 am.setStreamVolume(AudioManager.STREAM_RING, ringMax, 0);
                 am.setStreamVolume(AudioManager.STREAM_SYSTEM, systemMax, 0);
 
-                mVolumeInfo.getCurrentVolume();
+                //mVolumeInfo.getCurrentVolume();
                 sbNotification.setProgress(notificationMax);
                 tvNotification.setText(mVolumeInfo.getVolume(2) + "/" + notificationMax);
                 sbRing.setProgress(ringMax);
@@ -91,7 +236,7 @@ public class Main extends ActionBarActivity {
                 am.setStreamVolume(AudioManager.STREAM_RING, 0, 0);
                 am.setStreamVolume(AudioManager.STREAM_SYSTEM, 0, 0);
 
-                mVolumeInfo.getCurrentVolume();
+                //mVolumeInfo.getCurrentVolume();
                 sbNotification.setProgress(0);
                 tvNotification.setText(0 + "/" + notificationMax);
                 sbRing.setProgress(0);
@@ -105,7 +250,7 @@ public class Main extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 // need file to store value
-                mVolumeInfo.getCurrentVolume();
+                //mVolumeInfo.getCurrentVolume();
 
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, mVolumeInfo.getVolume(0), 0);
                 am.setStreamVolume(AudioManager.STREAM_ALARM, mVolumeInfo.getVolume(1), 0);
@@ -134,7 +279,7 @@ public class Main extends ActionBarActivity {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.d(TAG, "progress = " + progress);
+//                Log.d(TAG, "progress = " + progress);
                 progressValue = progress;
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
             }
@@ -153,7 +298,7 @@ public class Main extends ActionBarActivity {
             int progressValue = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.d(TAG, "progress = " + progress);
+//                Log.d(TAG, "progress = " + progress);
                 progressValue = progress;
                 am.setStreamVolume(AudioManager.STREAM_ALARM, progress, 0);
             }
@@ -172,7 +317,7 @@ public class Main extends ActionBarActivity {
             int progressValue = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.d(TAG, "progress = " + progress);
+//                Log.d(TAG, "progress = " + progress);
                 progressValue = progress;
                 am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, progress, 0);
             }
@@ -191,7 +336,7 @@ public class Main extends ActionBarActivity {
             int progressValue = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.d(TAG, "progress = " + progress);
+//                Log.d(TAG, "progress = " + progress);
                 progressValue = progress;
                 am.setStreamVolume(AudioManager.STREAM_RING, progress, 0);
             }
@@ -210,7 +355,7 @@ public class Main extends ActionBarActivity {
             int progressValue = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.d(TAG, "progress = " + progress);
+//                Log.d(TAG, "progress = " + progress);
                 progressValue = progress;
                 am.setStreamVolume(AudioManager.STREAM_SYSTEM, progress, 0);
             }
@@ -229,9 +374,9 @@ public class Main extends ActionBarActivity {
             int progressValue = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.d(TAG, "progress = " + progress);
+//                Log.d(TAG, "progress = " + progress);
                 progressValue = progress;
-                am.setStreamVolume(AudioManager.STREAM_SYSTEM, progress, 0);
+                am.setStreamVolume(AudioManager.STREAM_VOICE_CALL, progress, 0);
             }
 
             @Override
@@ -323,7 +468,7 @@ public class Main extends ActionBarActivity {
         if(Debug) Log.d(TAG, "voiceMax = " + voiceMax);
         voiceVolume = am.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
         if(Debug) Log.d(TAG, "voiceVolume = " + voiceVolume);
-        tvVoice.setText(voiceVolume + "/" + voiceVolume);
+        tvVoice.setText(voiceVolume + "/" + voiceMax);
     }
 
 
@@ -339,11 +484,50 @@ public class Main extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+
+            case R.id.action_schedule:
+                LayoutInflater mLayoutinflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View contentview = mLayoutinflater.inflate(R.layout.popup_schedule, null);
+                PopupWindow popupWindow = new PopupWindow(contentview,
+                                                          ViewGroup.LayoutParams.WRAP_CONTENT,
+                                                          ViewGroup.LayoutParams.WRAP_CONTENT);
+                popupWindow.setFocusable(true);
+                popupWindow.showAtLocation(findViewById(R.id.textView), Gravity.BOTTOM, 0, 0);
+                popupWindow.setBackgroundDrawable(new PaintDrawable());
+                popupWindow.update();
+                return true;
+
+            case R.id.action_about:
+                final CustomDialog dialog = new CustomDialog(this, getWindow().getDecorView().getRootView());
+                dialog.setTitle("About:");
+                dialog.setMessage("This is test!");
+                dialog.setPositiveButton("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.setNegativeButton("Cancel", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+                return true;
+
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);

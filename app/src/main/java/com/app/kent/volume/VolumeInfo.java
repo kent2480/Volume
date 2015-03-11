@@ -18,41 +18,28 @@ import android.util.Log;
  * */
 
 public class VolumeInfo {
-    private final static String TAG = "VolumnInfo";
+    private final static String TAG = "VolumeInfo";
 
     private AudioManager am;
-    private int musicCurrent, alarmCurrent, notificationCurrent, ringCurrent, systemCurrent,
-                voiceCurrent;
 
     VolumeInfo (Context context) {
         am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    public void getCurrentVolume() {
-        Log.d(TAG, "getCurrentVolume");
-        musicCurrent = am.getStreamVolume(AudioManager.STREAM_MUSIC);
-        alarmCurrent = am.getStreamVolume(AudioManager.STREAM_ALARM);
-        notificationCurrent = am.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
-        ringCurrent = am.getStreamVolume(AudioManager.STREAM_RING);
-        systemCurrent = am.getStreamVolume(AudioManager.STREAM_SYSTEM);
-        voiceCurrent = am.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
-    }
-
     public int getVolume(int type) {
         switch (type) {
             case 0:
-                return musicCurrent;
+                return am.getStreamVolume(AudioManager.STREAM_MUSIC);
             case 1:
-                return alarmCurrent;
+                return am.getStreamVolume(AudioManager.STREAM_ALARM);
             case 2:
-                //Log.d(TAG, "getVolume 2: notification currently =" + notificationCurrent);
-                return notificationCurrent;
+                return am.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
             case 3:
-                return ringCurrent;
+                return am.getStreamVolume(AudioManager.STREAM_RING);
             case 4:
-                return systemCurrent;
+                return am.getStreamVolume(AudioManager.STREAM_SYSTEM);
             case 5:
-                return voiceCurrent;
+                return am.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
             default:
                 return 0;
         }
