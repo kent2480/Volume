@@ -17,8 +17,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".VolumnSync"
-            android:label="@string/title_activity_volumn_sync" >
+            android:name=".Welcome"
+            android:label="@string/title_activity_welcome"
+            android:theme="@style/Transparent">
         </activity>
     </application>
 

@@ -1,6 +1,7 @@
 package com.app.kent.volume;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.PaintDrawable;
 import android.media.AudioManager;
 import android.support.v7.app.ActionBarActivity;
@@ -69,6 +70,12 @@ public class Main extends ActionBarActivity {
         Log.d(TAG, "Y dpi = " + dm.ydpi);
         float scale = getApplicationContext().getResources().getDisplayMetrics().density;
         Log.d(TAG, "Scale = " + scale);
+
+
+        Log.d(TAG, "start activity1");
+        Intent mIntent = new Intent();
+        mIntent.setClass(Main.this, Welcome.class);
+        startActivity(mIntent);
     }
 
     @Override
