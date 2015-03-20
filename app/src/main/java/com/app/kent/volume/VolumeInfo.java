@@ -2,7 +2,6 @@ package com.app.kent.volume;
 
 import android.content.Context;
 import android.media.AudioManager;
-import android.util.Log;
 
 /**
  * Created by kent on 2015/3/1.
@@ -26,19 +25,19 @@ public class VolumeInfo {
         am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    public int getVolume(int type) {
+    public int getVolume(VolumeType type) {
         switch (type) {
-            case 0:
+            case MUSIC:
                 return am.getStreamVolume(AudioManager.STREAM_MUSIC);
-            case 1:
+            case ALARM:
                 return am.getStreamVolume(AudioManager.STREAM_ALARM);
-            case 2:
+            case NOTI:
                 return am.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
-            case 3:
+            case RING:
                 return am.getStreamVolume(AudioManager.STREAM_RING);
-            case 4:
+            case SYSTEM:
                 return am.getStreamVolume(AudioManager.STREAM_SYSTEM);
-            case 5:
+            case VOICE:
                 return am.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
             default:
                 return 0;

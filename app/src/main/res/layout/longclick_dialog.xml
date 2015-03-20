@@ -7,14 +7,13 @@
     android:layout_margin="10dp">
 
     <TextView
-        android:id="@+id/CustomDlgTitle"
+        android:id="@+id/LongClickDlgTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_margin="10dp"
-        android:gravity="center"
-        android:textColor="@android:color/darker_gray" />
+        android:gravity="center"/>
 
     <View
         android:layout_width="match_parent"
@@ -22,48 +21,19 @@
         android:background="@android:color/darker_gray"/>
 
     <LinearLayout
-        android:id="@+id/CustomDlgContentView"
+        android:id="@+id/LongClickDlgContentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="5dp" />
 
     <TextView
-        android:id="@+id/CustomDlgContentText"
+        android:id="@+id/LongClickDlgContentText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/darker_gray"
         android:textSize="15sp"
         android:layout_margin="5dp"
-        android:paddingLeft="5sp"
-        android:text="Save current status of volume? (At most 3 items)"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="5dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="15sp"
-            android:layout_margin="5dp"
-            android:paddingLeft="5sp"
-            android:text="Name"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="15sp"
-            android:id="@+id/edit_name"
-            android:focusable="true" />
-
-    </LinearLayout>
-
-
+        android:paddingLeft="5sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -72,14 +42,14 @@
         android:layout_margin="5dp" >
 
         <Button
-            android:id="@+id/CustomDlgButtonOK"
+            android:id="@+id/LongClickDlgButtonOK"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:visibility="gone"/>
 
         <Button
-            android:id="@+id/CustomDlgButtonCancel"
+            android:id="@+id/LongClickDlgButtonCancel"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"

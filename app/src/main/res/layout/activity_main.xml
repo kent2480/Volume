@@ -49,7 +49,7 @@
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:id="@+id/seekBar"
+                android:id="@+id/sb_music"
                 android:paddingTop="5dp"/>
 
             <LinearLayout
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="15dp"
-                android:id="@+id/seekBar2"/>
+                android:id="@+id/sb_alarm"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="15dp"
-                android:id="@+id/seekBar3"/>
+                android:id="@+id/sb_noti"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -224,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="15dp"
-                android:id="@+id/seekBar4"/>
+                android:id="@+id/sb_ring"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -281,7 +281,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="15dp"
-                android:id="@+id/seekBar5"/>
+                android:id="@+id/sb_system"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -338,7 +338,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="15dp"
-                android:id="@+id/seekBar6"/>
+                android:id="@+id/sb_voice"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -374,21 +374,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="outdoor"
-                android:id="@+id/button" />
+                android:id="@+id/btn_outdoor" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="mute"
-                android:id="@+id/button2" />
+                android:id="@+id/btn_mute" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="custom"
-                android:id="@+id/button3" />
+                android:id="@+id/btn_custom" />
         </LinearLayout>
     </LinearLayout>
 
