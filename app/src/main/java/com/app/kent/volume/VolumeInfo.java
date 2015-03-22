@@ -25,19 +25,19 @@ public class VolumeInfo {
         am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    public int getVolume(VolumeType type) {
+    public int getVolume(int type) {
         switch (type) {
-            case MUSIC:
+            case 0:
                 return am.getStreamVolume(AudioManager.STREAM_MUSIC);
-            case ALARM:
+            case 1:
                 return am.getStreamVolume(AudioManager.STREAM_ALARM);
-            case NOTI:
+            case 2:
                 return am.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
-            case RING:
+            case 3:
                 return am.getStreamVolume(AudioManager.STREAM_RING);
-            case SYSTEM:
+            case 4:
                 return am.getStreamVolume(AudioManager.STREAM_SYSTEM);
-            case VOICE:
+            case 5:
                 return am.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
             default:
                 return 0;

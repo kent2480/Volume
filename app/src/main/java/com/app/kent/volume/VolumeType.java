@@ -12,8 +12,24 @@ public enum VolumeType {
         this.value = value;
     }
 
-    public int getValue() {
-        return value;
+    public int getValue(VolumeType type) {
+        switch(type){
+            case MUSIC:
+                return 0;
+            case ALARM:
+                return 1;
+            case NOTI:
+                return 2;
+            case RING:
+                return 3;
+            case SYSTEM:
+                return 4;
+            case VOICE:
+                return 5;
+            default:
+                return -1;
+
+        }
     }
 }
 
