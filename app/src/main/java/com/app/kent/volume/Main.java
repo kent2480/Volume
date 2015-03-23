@@ -38,10 +38,11 @@ public class Main extends ActionBarActivity {
     private DisplayMetrics dm;
     private AudioManager am;
 
-    private SeekBar sbMusic, sbAlarm, sbNotification, sbRing, sbSystem, sbVoice;
-    private int musicMax, alarmMax, notificationMax, ringMax, systemMax, voiceMax;
-    private int musicVolume, alarmVolume, notificationVolumn, ringVolume, systemVolume, voiceVolume;
-    private TextView tvMusic, tvAlarm, tvNotification, tvRing, tvSystem, tvVoice;
+    //private SeekBar sbMusic, sbAlarm, sbNotification, sbRing, sbSystem, sbVoice;
+    //private int musicMax, alarmMax, notificationMax, ringMax, systemMax, voiceMax;
+    //private int musicVolume, alarmVolume, notificationVolumn,
+    //            ringVolume, systemVolume, voiceVolume;
+    //private TextView tvMusic, tvAlarm, tvNotification, tvRing, tvSystem, tvVoice;
 
     private Button outdoor, mute, custom;
     private VolumeInfo mVolumeInfo;
@@ -90,6 +91,54 @@ public class Main extends ActionBarActivity {
         startActivity(mIntent);
 
         reloadData();
+
+        scanDevice();
+    }
+
+    public void scanDevice() {
+        int[] temp = new int[6]; //0 ~ 5
+        for(int i = 0; i < mVolMember.size(); i++) {
+            temp[i] = am.getStreamVolume(mVolMember.get(i).getAudioType(i));
+            Log.d(TAG, "temp[i] = " + temp[i]);
+        }
+
+        for(int i = 0; i < mVolMember.size(); i++) {
+            am.setStreamVolume(mVolMember.get(i).getAudioType(i), 5, 0);
+        }
+        Log.d(TAG, "System volume0 = " + am.getStreamVolume(AudioManager.STREAM_SYSTEM));
+//        am.setStreamVolume(AudioManager.STREAM_SYSTEM, 5, 0);
+        Log.d(TAG, "System volume1 = " + am.getStreamVolume(AudioManager.STREAM_SYSTEM));
+
+        //am.setStreamVolume(AudioManager.STREAM_SYSTEM, 4, 0);
+        //Log.d(TAG, "System volume2 = " + am.getStreamVolume(AudioManager.STREAM_SYSTEM));
+
+//        am.setStreamVolume(mVolMember.get(2).getAudioType(2), 0, 0);
+//        Log.d(TAG, "a = " + am.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
+//        Log.d(TAG, "b = " + am.getStreamVolume(AudioManager.STREAM_SYSTEM));
+//
+//        am.setStreamVolume(mVolMember.get(2).getAudioType(2), 1, 0);
+//        Log.d(TAG, "c = " + am.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
+//        Log.d(TAG, "d = " + am.getStreamVolume(AudioManager.STREAM_SYSTEM));
+//
+//        am.setStreamVolume(mVolMember.get(2).getAudioType(2), 2, 0);
+//        Log.d(TAG, "e = " + am.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
+//        Log.d(TAG, "f = " + am.getStreamVolume(AudioManager.STREAM_SYSTEM));
+
+
+//        if(am.getStreamVolume(mVolMember.get(3).getAudioType(3)) == 1 &&
+//                am.getStreamVolume(mVolMember.get(4).getAudioType(4)) == 1) {
+//            Log.d(TAG, "Device audio mode: noti = ring = system");
+//        } else if (am.getStreamVolume(mVolMember.get(3).getAudioType(3)) == 1) {
+//            Log.d(TAG, "Device audio mode: noti = ring");
+//        } else if (am.getStreamVolume(mVolMember.get(4).getAudioType(4)) == 1) {
+//            Log.d(TAG, "Device audio mode: noti = system");
+//        }
+
+        for(int i = 0; i < mVolMember.size(); i++) {
+            Log.d(TAG, "before: i = " + am.getStreamVolume(mVolMember.get(i).getAudioType(i)));
+            Log.d(TAG, "System volume3 = " + am.getStreamVolume(AudioManager.STREAM_SYSTEM));
+            am.setStreamVolume(mVolMember.get(i).getAudioType(i), temp[i], 0);
+        }
     }
 
     public void createMember() {
@@ -361,7 +410,8 @@ public class Main extends ActionBarActivity {
         for (int i = 0; i < mVolMember.size(); i++) {
             mVolMember.get(i).max =  am.getStreamMaxVolume(mVolMember.get(i).getAudioType(i));
             mVolMember.get(i).current =  am.getStreamVolume(mVolMember.get(i).getAudioType(i));
-            mVolMember.get(i).textView.setText(mVolMember.get(i).current + "/" + mVolMember.get(i).max);
+            mVolMember.get(i).textView
+                             .setText(mVolMember.get(i).current + "/" + mVolMember.get(i).max);
         }
     }
 
@@ -419,7 +469,8 @@ public class Main extends ActionBarActivity {
     }
 
     public void actionSchedule() {
-//                LayoutInflater mLayoutinflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                LayoutInflater mLayoutinflater = (LayoutInflater)
+//                                                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //                View contentview = mLayoutinflater.inflate(R.layout.popup_schedule, null);
 //                PopupWindow popupWindow = new PopupWindow(contentview,
 //                                                          ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -430,11 +481,13 @@ public class Main extends ActionBarActivity {
 //                popupWindow.update();
 
         readSelectedData();
-        final ScheduleDialog mSD = new ScheduleDialog(this, getWindow().getDecorView().getRootView());
+        final ScheduleDialog mSD = new ScheduleDialog(this,
+                getWindow().getDecorView().getRootView());
         mSD.setTitle("Schedule:");
         mSD.setSpinnerInit();
 
-        mSD.setSpinnerItem(startModeItemPref, stopModeItemPref, startTimeItemPref, stopTimeItemPref);
+        mSD.setSpinnerItem(startModeItemPref, stopModeItemPref,
+                startTimeItemPref, stopTimeItemPref);
         mSD.setSpinnerListener();
 
         mSD.setPositiveButton("OK", new View.OnClickListener() {
@@ -461,12 +514,24 @@ public class Main extends ActionBarActivity {
         stopModeItemPref = Integer.parseInt(settings.getString("stopModeItem", "0"));
         Log.d(TAG, "Pef2: stopModeItemPref = " + stopModeItemPref);
 
-
         startTimeItemPref = Integer.parseInt(settings.getString("startTimeItem", "0"));
         Log.d(TAG, "Pref3: startTimeItemPref = " + startTimeItemPref);
 
         stopTimeItemPref = Integer.parseInt(settings.getString("stopTimeItem", "0"));
         Log.d(TAG, "Pref4: stopTimeModePref = " + stopTimeItemPref);
+    }
+
+    public void saveVolumeMode(String modeName) {
+        for(int i = 0; i < mVolMember.size(); i++) {
+
+            int getVolume = am.getStreamVolume(mVolMember.get(i).getAudioType(i));
+            Log.d(TAG, "saveVolumeMode - i = " + getVolume);
+            //record all type volume with modeName
+            settings.edit()
+                    .putInt("[" + modeName + "]" + i, getVolume) //avoid the same mode name
+                    .apply();
+
+        }
     }
 
 
@@ -498,7 +563,8 @@ public class Main extends ActionBarActivity {
 
                 case R.id.btn_custom:
                     Log.d(TAG, "volumeMode onclick - btn_custom");
-                    final CustomDialog dialog = new CustomDialog(getApplicationContext(), getWindow().getDecorView().getRootView());
+                    final CustomDialog dialog = new CustomDialog(getApplicationContext(),
+                            getWindow().getDecorView().getRootView());
                     dialog.setTitle("Customer:");
                     //dialog.setMessage("This is test!");
                     dialog.setPositiveButton("Yes", new View.OnClickListener() {
@@ -509,18 +575,34 @@ public class Main extends ActionBarActivity {
                             Log.d(TAG, "customEditName = " + (customEditName.length()));
                             if(customEditName.equals("")) {
                                 Log.d(TAG, "invalid name");
-                                Toast.makeText(getApplicationContext(), "Please input valid name!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),
+                                        "Please input valid name!", Toast.LENGTH_LONG).show();
+
+                            } else if(customEditName.length() > 10) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Please shorten your name!", Toast.LENGTH_LONG).show();
 
                             } else if(customBtnSumPref >= 3) {
-                                Toast.makeText(getApplicationContext(), "Only three custom button.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),
+                                        "Only three custom button.", Toast.LENGTH_LONG).show();
+
+                            // smae name check!
+
                             } else {
                                 addDynamicButton(customEditName, customBtnSumPref);
 
                                 customBtnSumPref++;
                                 Log.d(TAG, "customBtnSumPref = " + customBtnSumPref);
                                 //apply() ? commit() ?
-                                settings.edit().putString("customBtn" + customBtnSumPref, customEditName).apply();
-                                settings.edit().putInt("customBtuSum", customBtnSumPref).apply();
+                                settings.edit()
+                                        .putString("customBtn" + customBtnSumPref, customEditName)
+                                        .apply();
+
+                                settings.edit()
+                                        .putInt("customBtuSum", customBtnSumPref)
+                                        .apply();
+
+                                saveVolumeMode(customEditName);
                             }
 
                             dialog.dismiss();
@@ -545,6 +627,7 @@ public class Main extends ActionBarActivity {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             progressValue = progress;
+            Log.d(TAG, "onProgressChanged: " + progress);
             switch(seekBar.getId()) {
                 case R.id.sb_music:
                     am.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
@@ -572,28 +655,33 @@ public class Main extends ActionBarActivity {
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
-
         }
 
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             switch(seekBar.getId()) {
                 case R.id.sb_music:
+                    am.setStreamVolume(AudioManager.STREAM_MUSIC, progressValue, 0);
                     mVolMember.get(0).textView.setText(progressValue + "/" + mVolMember.get(0).max);
                     break;
                 case R.id.sb_alarm:
+                    am.setStreamVolume(AudioManager.STREAM_ALARM, progressValue, 0);
                     mVolMember.get(1).textView.setText(progressValue + "/" + mVolMember.get(1).max);
                     break;
                 case R.id.sb_noti:
+                    am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, progressValue, 0);
                     mVolMember.get(2).textView.setText(progressValue + "/" + mVolMember.get(2).max);
                     break;
                 case R.id.sb_ring:
+                    am.setStreamVolume(AudioManager.STREAM_RING, progressValue, 0);
                     mVolMember.get(3).textView.setText(progressValue + "/" + mVolMember.get(3).max);
                     break;
                 case R.id.sb_system:
+                    am.setStreamVolume(AudioManager.STREAM_SYSTEM, progressValue, 0);
                     mVolMember.get(4).textView.setText(progressValue + "/" + mVolMember.get(4).max);
                     break;
                 case R.id.sb_voice:
+                    am.setStreamVolume(AudioManager.STREAM_VOICE_CALL, progressValue, 0);
                     mVolMember.get(5).textView.setText(progressValue + "/" + mVolMember.get(5).max);
                     break;
 

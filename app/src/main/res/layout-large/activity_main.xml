@@ -407,7 +407,7 @@
             android:orientation="horizontal"
             android:id="@+id/linear_custom">
 
-            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
