@@ -1,13 +1,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="0dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Main">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="false">
 
     <LinearLayout
         android:orientation="vertical"
@@ -28,11 +31,11 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="2dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="80dp"
+                android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp">
                 <TextView
@@ -50,7 +53,7 @@
 
 
             <SeekBar
-                android:layout_width="210dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:id="@+id/sb_music"
@@ -88,11 +91,11 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="2dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="80dp"
+                android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp">
                 <TextView
@@ -109,7 +112,7 @@
             </LinearLayout>
 
             <SeekBar
-                android:layout_width="210dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="15dp"
@@ -124,12 +127,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_alarm_up"
-                    android:src="@drawable/up" />
+                    android:src="@drawable/up"
+                    android:onClick="adjustVolume"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_alarm_down"
-                    android:src="@drawable/down" />
+                    android:src="@drawable/down"
+                    android:onClick="adjustVolume"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -143,11 +148,11 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="2dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="80dp"
+                android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp">
 
@@ -166,7 +171,7 @@
             </LinearLayout>
 
             <SeekBar
-                android:layout_width="210dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="15dp"
@@ -181,12 +186,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_noti_up"
-                    android:src="@drawable/up" />
+                    android:src="@drawable/up"
+                    android:onClick="adjustVolume"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_noti_down"
-                    android:src="@drawable/down" />
+                    android:src="@drawable/down"
+                    android:onClick="adjustVolume"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -201,11 +208,11 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="2dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="80dp"
+                android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp">
 
@@ -224,7 +231,7 @@
             </LinearLayout>
 
             <SeekBar
-                android:layout_width="210dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="15dp"
@@ -239,12 +246,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_ring_up"
-                    android:src="@drawable/up" />
+                    android:src="@drawable/up"
+                    android:onClick="adjustVolume"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_ring_down"
-                    android:src="@drawable/down" />
+                    android:src="@drawable/down"
+                    android:onClick="adjustVolume"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -258,11 +267,11 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
+            android:layout_marginTop="2dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="80dp"
+                android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp">
 
@@ -281,7 +290,7 @@
             </LinearLayout>
 
             <SeekBar
-                android:layout_width="210dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="15dp"
@@ -296,12 +305,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_sys_up"
-                    android:src="@drawable/up" />
+                    android:src="@drawable/up"
+                    android:onClick="adjustVolume"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_sys_down"
-                    android:src="@drawable/down" />
+                    android:src="@drawable/down"
+                    android:onClick="adjustVolume"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -315,11 +326,11 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="2dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="80dp"
+                android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp">
 
@@ -338,7 +349,7 @@
             </LinearLayout>
 
             <SeekBar
-                android:layout_width="210dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:paddingTop="15dp"
@@ -353,12 +364,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_voice_up"
-                    android:src="@drawable/up" />
+                    android:src="@drawable/up"
+                    android:onClick="adjustVolume"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_voice_down"
-                    android:src="@drawable/down" />
+                    android:src="@drawable/down"
+                    android:onClick="adjustVolume"/>
             </LinearLayout>
         </LinearLayout>
 
