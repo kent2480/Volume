@@ -1,5 +1,6 @@
 package com.app.kent.volume;
 
+import android.content.Context;
 import android.media.AudioManager;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -13,6 +14,11 @@ public class VolumeMember {
     public int max;
     public int current;
     public TextView textView;
+    public AudioManager am;
+
+    VolumeMember(Context context) {
+        am = (AudioManager) context.getSystemService(context.AUDIO_SERVICE);
+    }
 
     public int getAudioType(int type) {
         switch(type) {
@@ -31,5 +37,15 @@ public class VolumeMember {
             default:
                 return -1;
         }
+    }
+
+    public int getCurrent(int type) {
+        this.current = am.getStreamVolume(getAudioType(type));
+        return this.current;
+    }
+
+    public int getMax(int type) {
+        this.max = am.getStreamMaxVolume(getAudioType(type));
+        return this.max;
     }
 }
