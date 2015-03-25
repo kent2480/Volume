@@ -3,6 +3,7 @@ package com.app.kent.volume;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
  * STREAM_SYSTEM 7
  * STREAM_VOICE_CALL 7
  * */
+
 public class Main extends ActionBarActivity {
     private final static String TAG = "VolumeMain";
     private final static boolean Debug = false;
@@ -250,18 +252,20 @@ public class Main extends ActionBarActivity {
         }
     }
 
-    public void addDynamicButton(String buttonName, int count) {
+    public void addDynamicButton(final String buttonName, int count) {
         Log.d(TAG, "addDynamicButton(): " + buttonName);
         mLinearCustom = (LinearLayout) findViewById(R.id.linear_custom);
         mButton = new Button(getApplicationContext());
         mButton.setText(buttonName);
         mButton.setId(count);
+        mButton.setBackgroundColor(Color.BLACK);
         mLinearCustom.addView(mButton);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "addDynamicButton onClick(): " + v.getId());
+                Log.d(TAG, "addDynamicButton onClick(): " + v.getId() + "name = " + buttonName);
+                customSetVolume(buttonName);
             }
 
         });
@@ -270,7 +274,7 @@ public class Main extends ActionBarActivity {
             @Override
             public boolean onLongClick(View v) {
                 Log.d(TAG, "addDynamicButton onLongClick(): " + v.getId());
-                actionLongClick(v);
+                actionLongClick(v, buttonName);
 
 //                ViewGroup layout = (ViewGroup) v.getParent();
 //                if(null != layout) {
@@ -282,7 +286,18 @@ public class Main extends ActionBarActivity {
         });
     }
 
-    public void actionLongClick(final View buttonView) {
+    public void customSetVolume(String name) {
+        //int name="[a1]0" value="1"
+        for(int i = 0; i < 6; i++) {
+            mVolMember.get(i).current = settings.getInt("[" + name + "]" + i, 0);
+            Log.d(TAG, "customSetVolume: name" + i + " = " + mVolMember.get(i).current);
+            mVolMember.get(i).seekBar.setProgress(mVolMember.get(i).current);
+            mVolMember.get(i).textView.setText(mVolMember.get(i).current + "/" +
+                                               mVolMember.get(i).max);
+        }
+    }
+
+    public void actionLongClick(final View buttonView, final String name) {
         final AboutDialog dialog = new AboutDialog(this, getWindow().getDecorView().getRootView());
         dialog.setTitle("Remove button?");
         dialog.setMessage("Click YES to Remove this custom button");
@@ -291,6 +306,9 @@ public class Main extends ActionBarActivity {
             public void onClick(View v) {
                 ViewGroup layout = (ViewGroup) buttonView.getParent();
                 if(null != layout) {
+                    for(int i = 0; i < 6; i++) {
+                        settings.edit().remove("[" + name + "]" + i).commit();
+                    }
                     //for safety only  as you are doing onClick
                     layout.removeView(buttonView);
                     customBtnSumPref--;
@@ -298,6 +316,8 @@ public class Main extends ActionBarActivity {
                     //apply() ? commit() ?
                     settings.edit().putString("customBtn" + buttonView.getId(), "null").apply();
                     settings.edit().putInt("customBtuSum", customBtnSumPref).apply();
+
+
                 }
                 dialog.dismiss();
             }
@@ -314,8 +334,8 @@ public class Main extends ActionBarActivity {
 
     public void addVolume(int type) {
         if(mVolMember.get(3).getCurrent(3) == 0 && (type == 2 || type == 4)) {
-            Toast.makeText(getApplicationContext(), "Vibrate mode, can not add volume!", Toast.LENGTH_LONG)
-                    .show();
+            Toast.makeText(getApplicationContext(), "Vibrate mode, can not add volume!",
+                           Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -350,8 +370,10 @@ public class Main extends ActionBarActivity {
             mVolMember.get(2).seekBar.setProgress(mVolMember.get(2).getCurrent(2));
             mVolMember.get(4).seekBar.setProgress(mVolMember.get(4).getCurrent(4));
 
-            mVolMember.get(2).textView.setText(mVolMember.get(2).getCurrent(2) + "/" + mVolMember.get(2).max);
-            mVolMember.get(4).textView.setText(mVolMember.get(4).getCurrent(4) + "/" + mVolMember.get(4).max);
+            mVolMember.get(2).textView.setText(mVolMember.get(2).getCurrent(2) + "/" +
+                    mVolMember.get(2).max);
+            mVolMember.get(4).textView.setText(mVolMember.get(4).getCurrent(4) + "/" +
+                                               mVolMember.get(4).max);
         }
     }
 
@@ -359,15 +381,20 @@ public class Main extends ActionBarActivity {
 
         if(deviceMode == 1) {
             if(type == 2 || type == 3 || type == 4) {
-                mVolMember.get(2).textView.setText(mVolMember.get(2).getCurrent(2) + "/" + mVolMember.get(2).max);
-                mVolMember.get(3).textView.setText(mVolMember.get(2).getCurrent(3) + "/" + mVolMember.get(3).max);
-                mVolMember.get(4).textView.setText(mVolMember.get(2).getCurrent(4) + "/" + mVolMember.get(4).max);
+                mVolMember.get(2).textView.setText(mVolMember.get(2).getCurrent(2) + "/" +
+                                                   mVolMember.get(2).max);
+                mVolMember.get(3).textView.setText(mVolMember.get(2).getCurrent(3) + "/" +
+                                                   mVolMember.get(3).max);
+                mVolMember.get(4).textView.setText(mVolMember.get(2).getCurrent(4) + "/" +
+                                                   mVolMember.get(4).max);
 
             }
         } else if (deviceMode == 3) {
             if(type == 2 || type == 4) {
-                mVolMember.get(2).textView.setText(mVolMember.get(2).getCurrent(2) + "/" + mVolMember.get(2).max);
-                mVolMember.get(4).textView.setText(mVolMember.get(2).getCurrent(4) + "/" + mVolMember.get(4).max);
+                mVolMember.get(2).textView.setText(mVolMember.get(2).getCurrent(2) + "/" +
+                                                   mVolMember.get(2).max);
+                mVolMember.get(4).textView.setText(mVolMember.get(2).getCurrent(4) + "/" +
+                                                   mVolMember.get(4).max);
             }
         }
     }
@@ -532,11 +559,11 @@ public class Main extends ActionBarActivity {
     public void saveVolumeMode(String modeName) {
         for(int i = 0; i < mVolMember.size(); i++) {
 
-            int getVolume = am.getStreamVolume(mVolMember.get(i).getAudioType(i));
-            Log.d(TAG, "saveVolumeMode - i = " + getVolume);
-            //record all type volume with modeName
+//            int getVolume = am.getStreamVolume(mVolMember.get(i).getAudioType(i));
+            Log.d(TAG, "saveVolumeMode - i = " + mVolMember.get(i).getCurrent(i));
+            //record all type volume with modeName,  avoid the same mode name
             settings.edit()
-                    .putInt("[" + modeName + "]" + i, getVolume) //avoid the same mode name
+                    .putInt("[" + modeName + "]" + i, mVolMember.get(i).getCurrent(i))
                     .apply();
 
         }
@@ -569,6 +596,7 @@ public class Main extends ActionBarActivity {
                     }
                     break;
 
+
                 case R.id.btn_custom:
                     Log.d(TAG, "volumeMode onclick - btn_custom");
                     final CustomDialog dialog = new CustomDialog(getApplicationContext(),
@@ -597,9 +625,9 @@ public class Main extends ActionBarActivity {
                             // smae name check!
 
                             } else {
+                                customBtnSumPref++;
                                 addDynamicButton(customEditName, customBtnSumPref);
 
-                                customBtnSumPref++;
                                 Log.d(TAG, "customBtnSumPref = " + customBtnSumPref);
                                 //apply() ? commit() ?
                                 settings.edit()
