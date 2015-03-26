@@ -2,9 +2,33 @@
 <resources>
 
     <string name="app_name">Volume</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_volumn_sync">VolumnSync</string>
     <string name="title_activity_welcome">Welcome</string>
+
+    <string name="text_music">音樂:</string>
+    <string name="text_alarm">鬧鐘:</string>
+    <string name="text_noti">通知:</string>
+    <string name="text_ring">鈴聲:</string>
+    <string name="text_sys">系統:</string>
+    <string name="text_voice">語音:</string>
+
+    <string name="text_outdoor">戶外</string>
+    <string name="text_mute">靜音</string>
+    <string name="text_custom">自訂</string>
+
+
+    <string name="menu_about">說明</string>
+    <string name="menu_feedback">回饋</string>
+    <string name="menu_schedule">排程</string>
+
+    <string name="dlg_about">說明:</string>
+    <string name="dlg_ok">確定</string>
+    <string name="dlg_cancel">取消</string>
+    <string name="dlg_about_message">音量控制會依據裝置不同而改變，部份手機會將通知與系統音量共用</string>
+
+
+    <string name="dlg_feedback">回饋:</string>
+    <string name="dlg_feedback_message">錯誤回報與相關問題建議:\r\n Blog:</string>
+
 
 </resources>

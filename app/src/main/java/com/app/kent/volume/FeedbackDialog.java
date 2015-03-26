@@ -13,48 +13,48 @@ import android.widget.TextView;
 /**
  * Created by Kent_Zheng on 2015/3/11.
  */
-public class AboutDialog {
+public class FeedbackDialog {
     private View mParent;
     private PopupWindow mPopupWindow;
     private LinearLayout mRootLayout;
     private ViewGroup.LayoutParams mLayoutParams;
 
-    AboutDialog (Context context, View parent) {
+    FeedbackDialog (Context context, View parent) {
         mParent = parent;
         LayoutInflater mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mRootLayout = (LinearLayout)mInflater.inflate(R.layout.about_dialog, null);
+        mRootLayout = (LinearLayout)mInflater.inflate(R.layout.feedback_dialog, null);
         mLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     public void setTitle(String title) {
-        TextView mTitle = (TextView)mRootLayout.findViewById(R.id.AboutDlgTitle);
+        TextView mTitle = (TextView) mRootLayout.findViewById(R.id.FeedDlgTitle);
         mTitle.setText(title);
     }
 
     public void setMessage(String message) {
-        TextView mMessage = (TextView) mRootLayout.findViewById(R.id.AboutDlgContentText);
+        TextView mMessage = (TextView)mRootLayout.findViewById(R.id.FeedDlgContentText);
         mMessage.setText(message);
     }
 
     public void setPositiveButton(String text,View.OnClickListener listener ) {
-        final Button buttonOK = (Button) mRootLayout.findViewById(R.id.AboutDlgButtonOK);
+        final Button buttonOK = (Button)mRootLayout.findViewById(R.id.FeedDlgButtonOK);
         buttonOK.setText(text);
         buttonOK.setOnClickListener(listener);
         buttonOK.setVisibility(View.VISIBLE);
     }
 
     public void setNegativeButton(String text,View.OnClickListener listener ) {
-        final Button buttonCancel = (Button) mRootLayout.findViewById(R.id.AboutDlgButtonCancel);
+        final Button buttonCancel = (Button)mRootLayout.findViewById(R.id.FeedDlgButtonCancel);
         buttonCancel.setText(text);
         buttonCancel.setOnClickListener(listener);
         buttonCancel.setVisibility(View.VISIBLE);
     }
 
     public void setContentLayout(View layout) {
-        TextView mMessage = (TextView)mRootLayout.findViewById(R.id.AboutDlgContentText);
+        TextView mMessage = (TextView)mRootLayout.findViewById(R.id.FeedDlgContentText);
         mMessage.setVisibility(View.GONE);
-        LinearLayout contentLayout = (LinearLayout) mRootLayout.findViewById(R.id.AboutDlgContentView);
+        LinearLayout contentLayout = (LinearLayout)mRootLayout.findViewById(R.id.FeedDlgContentView);
         contentLayout.addView(layout);
     }
 

@@ -3,7 +3,6 @@ package com.app.kent.volume;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -255,10 +254,10 @@ public class Main extends ActionBarActivity {
     public void addDynamicButton(final String buttonName, int count) {
         Log.d(TAG, "addDynamicButton(): " + buttonName);
         mLinearCustom = (LinearLayout) findViewById(R.id.linear_custom);
-        mButton = new Button(getApplicationContext());
+        //mButton = new Button(getApplicationContext());
+        mButton = (Button) getLayoutInflater().inflate(R.layout.custom_button, null);
         mButton.setText(buttonName);
         mButton.setId(count);
-        mButton.setBackgroundColor(Color.BLACK);
         mLinearCustom.addView(mButton);
 
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -461,17 +460,17 @@ public class Main extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                actionSettings();
-                return true;
-
-            case R.id.action_schedule:
-                actionSchedule();
-                return true;
-
             case R.id.action_about:
                 actionAbout();
                 return true;
+
+            case R.id.action_feedback:
+                actionfeedback();
+                return true;
+
+//            case R.id.action_about:
+//                actionAbout();
+//                return true;
 
             default:
                 break;
@@ -479,66 +478,83 @@ public class Main extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void actionSettings() {
-
-    }
 
     public void actionAbout() {
-        final AboutDialog dialog = new AboutDialog(this, getWindow().getDecorView().getRootView());
-        dialog.setTitle("About:");
-        dialog.setMessage("This is test!");
-        dialog.setPositiveButton("OK", new View.OnClickListener() {
+        final AboutDialog mAboutDialog = new AboutDialog(this, getWindow().getDecorView().getRootView());
+        mAboutDialog.setTitle(getString(R.string.dlg_about));
+        mAboutDialog.setMessage(getString(R.string.dlg_about_message));
+        mAboutDialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                mAboutDialog.dismiss();
             }
         });
 
-        dialog.setNegativeButton("Cancel", new View.OnClickListener() {
+        mAboutDialog.setNegativeButton(getString(R.string.dlg_cancel), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                mAboutDialog.dismiss();
             }
         });
-        dialog.show();
+        mAboutDialog.show();
     }
 
-    public void actionSchedule() {
-//                LayoutInflater mLayoutinflater = (LayoutInflater)
-//                                                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View contentview = mLayoutinflater.inflate(R.layout.popup_schedule, null);
-//                PopupWindow popupWindow = new PopupWindow(contentview,
-//                                                          ViewGroup.LayoutParams.WRAP_CONTENT,
-//                                                          ViewGroup.LayoutParams.WRAP_CONTENT);
-//                popupWindow.setFocusable(true);
-//                popupWindow.showAtLocation(findViewById(R.id.textView), Gravity.BOTTOM, 0, 0);
-//                popupWindow.setBackgroundDrawable(new PaintDrawable());
-//                popupWindow.update();
-
-        readSelectedData();
-        final ScheduleDialog mSD = new ScheduleDialog(this,
-                getWindow().getDecorView().getRootView());
-        mSD.setTitle("Schedule:");
-        mSD.setSpinnerInit();
-
-        mSD.setSpinnerItem(startModeItemPref, stopModeItemPref,
-                startTimeItemPref, stopTimeItemPref);
-        mSD.setSpinnerListener();
-
-        mSD.setPositiveButton("OK", new View.OnClickListener() {
+    public void actionfeedback() {
+        final FeedbackDialog mFeedbackDialog = new FeedbackDialog(this, getWindow().getDecorView().getRootView());
+        mFeedbackDialog.setTitle(getString(R.string.dlg_feedback));
+        mFeedbackDialog.setMessage("This is test!");
+        mFeedbackDialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSD.dismiss();
+                mFeedbackDialog.dismiss();
             }
         });
-        mSD.setNegativeButton("Cancel", new View.OnClickListener() {
+
+        mFeedbackDialog.setNegativeButton(getString(R.string.dlg_cancel), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mSD.dismiss();
+                mFeedbackDialog.dismiss();
             }
         });
-        mSD.show();
+        mFeedbackDialog.show();
     }
+
+//    public void actionSchedule() {
+////                LayoutInflater mLayoutinflater = (LayoutInflater)
+////                                                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+////                View contentview = mLayoutinflater.inflate(R.layout.popup_schedule, null);
+////                PopupWindow popupWindow = new PopupWindow(contentview,
+////                                                          ViewGroup.LayoutParams.WRAP_CONTENT,
+////                                                          ViewGroup.LayoutParams.WRAP_CONTENT);
+////                popupWindow.setFocusable(true);
+////                popupWindow.showAtLocation(findViewById(R.id.textView), Gravity.BOTTOM, 0, 0);
+////                popupWindow.setBackgroundDrawable(new PaintDrawable());
+////                popupWindow.update();
+//
+//        readSelectedData();
+//        final ScheduleDialog mSD = new ScheduleDialog(this,
+//                getWindow().getDecorView().getRootView());
+//        mSD.setTitle("Schedule:");
+//        mSD.setSpinnerInit();
+//
+//        mSD.setSpinnerItem(startModeItemPref, stopModeItemPref,
+//                startTimeItemPref, stopTimeItemPref);
+//        mSD.setSpinnerListener();
+//
+//        mSD.setPositiveButton("OK", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mSD.dismiss();
+//            }
+//        });
+//        mSD.setNegativeButton("Cancel", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mSD.dismiss();
+//            }
+//        });
+//        mSD.show();
+//    }
 
     public void readSelectedData() {
         Log.d(TAG, "readSelectedData");

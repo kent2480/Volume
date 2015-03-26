@@ -6,7 +6,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
 
     tools:context=".Main">
 
@@ -21,14 +20,8 @@
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Volume Controll - normal"
-            android:id="@+id/textView" />
+        android:layout_alignParentStart="true"
+        >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -45,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Music:"/>
+                    android:text="@string/text_music"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Alarm:"/>
+                    android:text="@string/text_alarm"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -163,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Notification:"/>
+                    android:text="@string/text_noti"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -223,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Ring:"/>
+                    android:text="@string/text_ring"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -282,7 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="System:"/>
+                    android:text="@string/text_sys"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -341,7 +334,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Voice:"/>
+                    android:text="@string/text_voice"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -387,35 +380,46 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="3dp">
 
             <Button
-                style="?android:attr/buttonStyleSmall"
+                style="@style/btnStyleBlackpearl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="outdoor"
+                android:text="@string/text_outdoor"
                 android:id="@+id/btn_outdoor" />
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mute"
-                android:id="@+id/btn_mute" />
+            <View
+                android:layout_width="2dp"
+                android:layout_height="wrap_content"/>
 
             <Button
-                style="?android:attr/buttonStyleSmall"
+                style="@style/btnStyleBlackpearl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="custom"
-                android:id="@+id/btn_custom" />
+                android:text="@string/text_mute"
+                android:id="@+id/btn_mute"/>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                style="@style/btnStyleBlackpearl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_custom"
+                android:id="@+id/btn_custom"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/linear_custom">
+            android:id="@+id/linear_custom"
+            android:paddingTop="3dp"
+            android:layout_margin="2dp">
 
         </LinearLayout>
     </LinearLayout>

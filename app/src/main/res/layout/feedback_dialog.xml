@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/shape_bg">
+    android:background="@drawable/shape_bg"
+    android:layout_margin="10dp">
 
-    <!---->
     <TextView
-        android:id="@+id/AboutDlgTitle"
+        android:id="@+id/FeedDlgTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:layout_margin="10dp"
         android:gravity="center"/>
 
     <View
@@ -20,34 +21,35 @@
         android:background="@android:color/darker_gray"/>
 
     <LinearLayout
-        android:id="@+id/AboutDlgContentView"
+        android:id="@+id/FeedDlgContentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="3dp"/>
+        android:layout_margin="5dp" />
 
     <TextView
-        android:id="@+id/AboutDlgContentText"
+        android:id="@+id/FeedDlgContentText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:paddingLeft="10dp"/>
+        android:layout_margin="5dp"
+        android:paddingLeft="5sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="3dp">
+        android:layout_margin="5dp" >
 
         <Button
-            android:id="@+id/AboutDlgButtonOK"
+            android:id="@+id/FeedDlgButtonOK"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:visibility="gone"/>
 
         <Button
-            android:id="@+id/AboutDlgButtonCancel"
+            android:id="@+id/FeedDlgButtonCancel"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
