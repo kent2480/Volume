@@ -2,13 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-
     tools:context=".Main">
 
+    <!--android:background="@drawable/main_background"-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +52,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:id="@+id/sb_music"
-                android:paddingTop="5dp"/>
+                android:paddingTop="5dp"
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -388,7 +388,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/text_outdoor"
-                android:id="@+id/btn_outdoor" />
+                android:id="@+id/btn_outdoor"
+                android:background="@drawable/custom_btn_black_pearl"/>
 
             <View
                 android:layout_width="2dp"
@@ -411,6 +412,29 @@
                 android:layout_height="wrap_content"
                 android:text="@string/text_custom"
                 android:id="@+id/btn_custom"/>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                style="@style/btnStyleBlackpearl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_custom"
+                android:id="@+id/btn_custom2"/>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                style="@style/btnStyleBlackpearl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_custom"
+                android:id="@+id/btn_custom3"/>
+
         </LinearLayout>
 
         <LinearLayout
