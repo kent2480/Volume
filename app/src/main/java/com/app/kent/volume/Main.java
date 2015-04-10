@@ -76,8 +76,6 @@ public class Main extends ActionBarActivity {
         Log.d(TAG, "DensityDpi = " + dm.densityDpi);
         Log.d(TAG, "X dpi = " + dm.xdpi);
         Log.d(TAG, "Y dpi = " + dm.ydpi);
-        float scale = getApplicationContext().getResources().getDisplayMetrics().density;
-        Log.d(TAG, "Scale = " + scale);
 
 
         Log.d(TAG, "start activity1");
@@ -104,6 +102,8 @@ public class Main extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        getVolumeInfo();
+        initSeekBar();
 
         Log.d(TAG, "onResume");
     }
@@ -377,7 +377,6 @@ public class Main extends ActionBarActivity {
     }
 
     public void checkDeviceMode(int type) {
-
         if(deviceMode == 1) {
             if(type == 2 || type == 3 || type == 4) {
                 mVolMember.get(2).textView.setText(mVolMember.get(2).getCurrent(2) + "/" +
@@ -593,13 +592,23 @@ public class Main extends ActionBarActivity {
             switch(v.getId()) {
                 case R.id.btn_outdoor:
                     Log.d(TAG, "volumeMode onclick - btn_outdoor");
-                    for(int i = 2; i < 5; i++) {
+
+                    //set ring first i = 3, avoid noti can not up volume.
+                    for(int i = 3; i < 5; i++) {
+
                         am.setStreamVolume(mVolMember.get(i).getAudioType(i),
                                            mVolMember.get(i).max, 0);
                         mVolMember.get(i).seekBar.setProgress(mVolMember.get(i).max);
                         mVolMember.get(i).textView.setText(mVolMember.get(i).getCurrent(i) + "/" +
                                                            mVolMember.get(i).max);
                     }
+
+                    am.setStreamVolume(mVolMember.get(2).getAudioType(2), mVolMember.get(2).max, 0);
+                    mVolMember.get(2).seekBar.setProgress(mVolMember.get(2).max);
+                    mVolMember.get(2).textView.setText(mVolMember.get(2).getCurrent(2) + "/" +
+                            mVolMember.get(2).max);
+
+
                     break;
 
                 case R.id.btn_mute:
