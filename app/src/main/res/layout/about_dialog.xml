@@ -3,21 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/shape_bg">
+    android:background="@drawable/shape_bg"
+    android:layout_margin="10dp">
 
-    <!---->
     <TextView
         android:id="@+id/AboutDlgTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:gravity="center"/>
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:textColor="@color/black"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@color/grey"/>
 
     <LinearLayout
         android:id="@+id/AboutDlgContentView"
@@ -30,28 +32,31 @@
         android:id="@+id/AboutDlgContentText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:textSize="15sp"
-        android:paddingLeft="10dp"/>
+        android:layout_margin="5dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="3dp">
+        android:layout_margin="5dp">
 
         <Button
             android:id="@+id/AboutDlgButtonOK"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:textColor="@color/grey"/>
 
         <Button
             android:id="@+id/AboutDlgButtonCancel"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:textColor="@color/grey"/>
 
     </LinearLayout>
 

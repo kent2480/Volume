@@ -2,11 +2,9 @@
 <resources>
 
     <string name="app_name">Volume</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_volumn_sync">VolumnSync</string>
     <string name="title_activity_welcome">Welcome</string>
-
 
     <string name="text_music">Music:</string>
     <string name="text_alarm">Alarm:</string>
@@ -18,8 +16,30 @@
     <string name="text_outdoor">outdoor</string>
     <string name="text_mute">mute</string>
     <string name="text_custom">custom</string>
+    <string name="text_exit">exit</string>
+
 
     <string name="menu_about">About</string>
     <string name="menu_feedback">Feedback</string>
     <string name="menu_schedule">Schedule</string>
+
+    <string name="dlg_about">About:</string>
+    <string name="dlg_ok">Ok</string>
+    <string name="dlg_cancel">Cancel</string>
+    <string name="dlg_about_message">音量控制會依據裝置不同而改變，部份手機會將通知與系統音量共用</string>
+
+    <string name="dlg_custom">Add custom button:</string>
+    <string name="dlg_text">Save current status of volume?</string>
+    <string name="dlg_name">Name</string>
+
+    <string name="dlg_feedback">Feedback:</string>
+    <string name="dlg_feedback_message">錯誤回報與相關問題建議:\r\n Blog:</string>
+
+    <string name="cust_name_error">Please input valid name!</string>
+    <string name="cust_name_length">Please shorten the length of name(less than 10 char)</string>
+    <string name="cust_amount">Only three custom buttons. You can long click old custom button to remove.</string>
+
+    <string name="dlg_long_title">Remove custom button:</string>
+    <string name="dlg_long_text">Click Ok to remove</string>
+
 </resources>

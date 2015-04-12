@@ -39,13 +39,14 @@ public class Main extends ActionBarActivity {
     private DisplayMetrics dm;
     private AudioManager am;
 
-    private Button outdoor, mute, custom;
+    private Button outdoor, mute, custom, exit;
     private int startModeItemPref, stopModeItemPref, startTimeItemPref, stopTimeItemPref;
     private LinearLayout mLinearCustom;
     private int customBtnSumPref = 0;
     private String customBtnPref1, customBtnPref2, customBtnPref3;
     private SharedPreferences settings;
     private Button mButton;
+    private View mView;
     private VolumeMember music, alarm, noti, ring, system, voice;
     private ArrayList<VolumeMember> mVolMember;
     private int deviceMode = 0;
@@ -163,6 +164,7 @@ public class Main extends ActionBarActivity {
         outdoor = (Button) findViewById(R.id.btn_outdoor);
         mute = (Button) findViewById(R.id.btn_mute);
         custom = (Button) findViewById(R.id.btn_custom);
+        exit = (Button) findViewById(R.id.btn_exit);
 
         mContext = this.getApplicationContext();
 
@@ -187,6 +189,7 @@ public class Main extends ActionBarActivity {
         outdoor.setOnClickListener(new volumeMode());
         mute.setOnClickListener(new volumeMode());
         custom.setOnClickListener(new volumeMode());
+        exit.setOnClickListener(new volumeMode());
 
         for (int i = 0; i < mVolMember.size(); i++) {
             mVolMember.get(i).seekBar.setOnSeekBarChangeListener(new seekBarChange());
@@ -254,11 +257,13 @@ public class Main extends ActionBarActivity {
     public void addDynamicButton(final String buttonName, int count) {
         Log.d(TAG, "addDynamicButton(): " + buttonName);
         mLinearCustom = (LinearLayout) findViewById(R.id.linear_custom);
-        //mButton = new Button(getApplicationContext());
+
         mButton = (Button) getLayoutInflater().inflate(R.layout.custom_button, null);
         mButton.setText(buttonName);
         mButton.setId(count);
+
         mLinearCustom.addView(mButton);
+        mLinearCustom.addView(mView);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -298,9 +303,10 @@ public class Main extends ActionBarActivity {
 
     public void actionLongClick(final View buttonView, final String name) {
         final AboutDialog dialog = new AboutDialog(this, getWindow().getDecorView().getRootView());
-        dialog.setTitle("Remove button?");
-        dialog.setMessage("Click YES to Remove this custom button");
-        dialog.setPositiveButton("OK", new View.OnClickListener() {
+        dialog.setTitle(getString(R.string.dlg_long_title));
+        dialog.setMessage(getString(R.string.dlg_long_text));
+
+        dialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ViewGroup layout = (ViewGroup) buttonView.getParent();
@@ -322,7 +328,7 @@ public class Main extends ActionBarActivity {
             }
         });
 
-        dialog.setNegativeButton("Cancel", new View.OnClickListener() {
+        dialog.setNegativeButton(getString(R.string.dlg_cancel), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -626,26 +632,27 @@ public class Main extends ActionBarActivity {
                     Log.d(TAG, "volumeMode onclick - btn_custom");
                     final CustomDialog dialog = new CustomDialog(getApplicationContext(),
                             getWindow().getDecorView().getRootView());
-                    dialog.setTitle("Customer:");
-                    //dialog.setMessage("This is test!");
-                    dialog.setPositiveButton("Yes", new View.OnClickListener() {
+                    dialog.setTitle(getString(R.string.dlg_custom));
+
+                    dialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             String customEditName = dialog.getEditTextName();
                             Log.d(TAG, "customEditName = " + customEditName);
                             Log.d(TAG, "customEditName = " + (customEditName.length()));
+
                             if(customEditName.equals("")) {
                                 Log.d(TAG, "invalid name");
                                 Toast.makeText(getApplicationContext(),
-                                        "Please input valid name!", Toast.LENGTH_LONG).show();
+                                        getString(R.string.cust_name_error), Toast.LENGTH_LONG).show();
 
                             } else if(customEditName.length() > 10) {
                                 Toast.makeText(getApplicationContext(),
-                                        "Please shorten your name!", Toast.LENGTH_LONG).show();
+                                        getString(R.string.cust_name_length), Toast.LENGTH_LONG).show();
 
                             } else if(customBtnSumPref >= 3) {
                                 Toast.makeText(getApplicationContext(),
-                                        "Only three custom button.", Toast.LENGTH_LONG).show();
+                                        getString(R.string.cust_amount), Toast.LENGTH_LONG).show();
 
                             // smae name check!
 
@@ -665,19 +672,21 @@ public class Main extends ActionBarActivity {
 
                                 saveVolumeMode(customEditName);
                             }
-
                             dialog.dismiss();
-
                         }
                     });
 
-                    dialog.setNegativeButton("No", new View.OnClickListener() {
+                    dialog.setNegativeButton(getString(R.string.dlg_cancel), new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             dialog.dismiss();
                         }
                     });
                     dialog.show();
+                    break;
+
+                case R.id.btn_exit:
+                    finish();
                     break;
             }
         }

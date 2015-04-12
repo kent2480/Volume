@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Volume</string>
+    <string name="action_settings">設定</string>
     <string name="title_activity_volumn_sync">VolumnSync</string>
     <string name="title_activity_welcome">Welcome</string>
 
@@ -15,6 +16,8 @@
     <string name="text_outdoor">戶外</string>
     <string name="text_mute">靜音</string>
     <string name="text_custom">自訂</string>
+    <string name="text_exit">離開</string>
+
 
 
     <string name="menu_about">說明</string>
@@ -26,9 +29,21 @@
     <string name="dlg_cancel">取消</string>
     <string name="dlg_about_message">音量控制會依據裝置不同而改變，部份手機會將通知與系統音量共用</string>
 
+    <string name="dlg_custom">新增自訂按鈕:</string>
+    <string name="dlg_text">儲存目前音量狀態?</string>
+    <string name="dlg_name">名稱</string>
+
 
     <string name="dlg_feedback">回饋:</string>
     <string name="dlg_feedback_message">錯誤回報與相關問題建議:\r\n Blog:</string>
+
+    <string name="cust_name_error">請輸入有效名稱!</string>
+    <string name="cust_name_length">請縮短名稱長度(需小於10字元)</string>
+    <string name="cust_amount">最多新增三個自訂按鈕，可長按已新增按鈕移除</string>
+
+
+    <string name="dlg_long_title">移除自訂按鈕:</string>
+    <string name="dlg_long_text">點擊"確定"移除自訂按鈕</string>
 
 
 </resources>

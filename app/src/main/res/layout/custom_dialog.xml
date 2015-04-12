@@ -3,8 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/shape_bg"
-    android:layout_margin="10dp">
+    android:background="@drawable/shape_bg">
 
     <TextView
         android:id="@+id/CustomDlgTitle"
@@ -12,56 +11,56 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:layout_margin="10dp"
         android:gravity="center"
-        android:textColor="@android:color/darker_gray" />
+        android:textColor="@color/black"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@color/grey"/>
 
     <LinearLayout
         android:id="@+id/CustomDlgContentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="5dp" />
+        android:orientation="vertical"/>
 
     <TextView
         android:id="@+id/CustomDlgContentText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@color/black"
         android:textSize="15sp"
-        android:layout_margin="5dp"
-        android:paddingLeft="5sp"
-        android:text="Save current status of volume? (At most 3 items)"/>
+        android:text="@string/dlg_text"
+        android:paddingLeft="10dp"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="5dp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray"
+            android:id="@+id/tv_cust_name"
+            android:textColor="@color/black"
             android:textSize="15sp"
-            android:layout_margin="5dp"
-            android:paddingLeft="5sp"
-            android:text="Name"/>
+            android:text="@string/dlg_name"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"/>
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/darker_gray"
+            android:maxEms="10"
+            android:textColor="@color/black"
             android:textSize="15sp"
             android:id="@+id/edit_name"
-            android:focusable="true" />
+            android:focusable="true"
+            android:layout_toRightOf="@+id/tv_cust_name"
+            android:textCursorDrawable="@drawable/color_cursor"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 
@@ -76,14 +75,16 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:textColor="@color/grey" />
 
         <Button
             android:id="@+id/CustomDlgButtonCancel"
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:textColor="@color/grey"/>
 
     </LinearLayout>
 
