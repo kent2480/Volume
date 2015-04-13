@@ -38,6 +38,7 @@
     <string name="cust_name_error">Please input valid name!</string>
     <string name="cust_name_length">Please shorten the length of name(less than 10 char)</string>
     <string name="cust_amount">Only three custom buttons. You can long click old custom button to remove.</string>
+    <string name="vibrste_warnning">震動模式無法調高通知或系統音量，請先調高鈴聲音量來解除震動模式</string>
 
     <string name="dlg_long_title">Remove custom button:</string>
     <string name="dlg_long_text">Click Ok to remove</string>

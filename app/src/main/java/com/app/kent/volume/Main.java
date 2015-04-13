@@ -1,13 +1,11 @@
 package com.app.kent.volume;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,32 +19,18 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-
-/**
- * STREAM_MUSIC 15
- * STREAM_ALARM 7
- * STREAM_DTMF
- * STREAM_NOTIFICATION 7
- * STREAM_RING 7
- * STREAM_SYSTEM 7
- * STREAM_VOICE_CALL 7
- * */
-
 public class Main extends ActionBarActivity {
     private final static String TAG = "VolumeMain";
     private final static boolean Debug = false;
-    private Context mContext;
-    private DisplayMetrics dm;
     private AudioManager am;
 
     private Button outdoor, mute, custom, exit;
-    private int startModeItemPref, stopModeItemPref, startTimeItemPref, stopTimeItemPref;
+//    private int startModeItemPref, stopModeItemPref, startTimeItemPref, stopTimeItemPref;
     private LinearLayout mLinearCustom;
     private int customBtnSumPref = 0;
     private String customBtnPref1, customBtnPref2, customBtnPref3;
     private SharedPreferences settings;
     private Button mButton;
-    private View mView;
     private VolumeMember music, alarm, noti, ring, system, voice;
     private ArrayList<VolumeMember> mVolMember;
     private int deviceMode = 0;
@@ -57,9 +41,11 @@ public class Main extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate");
-        setContentView(R.layout.activity_main);
+        if (Debug) {
+            Log.d(TAG, "onCreate");
+        }
 
+        setContentView(R.layout.activity_main);
         createMember();
         initView();
 
@@ -67,22 +53,10 @@ public class Main extends ActionBarActivity {
         initSeekBar();
         setListener();
 
-        dm = mContext.getResources().getDisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        // FE375CG: 1216*800 scale = 1.332501
-        // Nexus2:  1824*1200 scale = 2.0
-        // Zenfone: 1280*720 scale = 2.0
-        Log.d(TAG, "Height = " + dm.heightPixels + ", width = " + dm.widthPixels);
-        Log.d(TAG, "Density = " + dm.density);
-        Log.d(TAG, "DensityDpi = " + dm.densityDpi);
-        Log.d(TAG, "X dpi = " + dm.xdpi);
-        Log.d(TAG, "Y dpi = " + dm.ydpi);
-
-
-        Log.d(TAG, "start activity1");
-        Intent mIntent = new Intent();
-        mIntent.setClass(Main.this, Welcome.class);
-        startActivity(mIntent);
+//        Log.d(TAG, "start activity1");
+//        Intent mIntent = new Intent();
+//        mIntent.setClass(Main.this, Welcome.class);
+//        startActivity(mIntent);
 
         reloadData();
         scanDevice();
@@ -91,13 +65,17 @@ public class Main extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart");
+        if(Debug) {
+            Log.d(TAG, "onStart");
+        }
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d(TAG, "onRestart");
+        if(Debug) {
+            Log.d(TAG, "onRestart");
+        }
     }
 
     @Override
@@ -106,25 +84,33 @@ public class Main extends ActionBarActivity {
         getVolumeInfo();
         initSeekBar();
 
-        Log.d(TAG, "onResume");
+        if (Debug) {
+            Log.d(TAG, "onResume");
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "onPause");
+        if(Debug) {
+            Log.d(TAG, "onPause");
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG, "onStop");
+        if(Debug) {
+            Log.d(TAG, "onStop");
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy");
+        if(Debug) {
+            Log.d(TAG, "onDestroy");
+        }
     }
 
     public void createMember() {
@@ -166,8 +152,6 @@ public class Main extends ActionBarActivity {
         custom = (Button) findViewById(R.id.btn_custom);
         exit = (Button) findViewById(R.id.btn_exit);
 
-        mContext = this.getApplicationContext();
-
         settings = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
@@ -198,24 +182,27 @@ public class Main extends ActionBarActivity {
 
     public void reloadData() {
         customBtnSumPref = settings.getInt("customBtuSum", 0);
-        Log.d(TAG, "reloadData Pref: customBtnSumPref = " + customBtnSumPref);
 
         customBtnPref1 = settings.getString("customBtn1", "null");
-        Log.d(TAG, "reloadData Pref: customBtnPref1 = " + customBtnPref1);
         if(!customBtnPref1.equals("null")) {
-            addDynamicButton(customBtnPref1, 0);
+            addDynamicButton(customBtnPref1, 1);
         }
 
         customBtnPref2 = settings.getString("customBtn2", "null");
-        Log.d(TAG, "reloadData Pref: customBtnPref2 = " + customBtnPref2);
         if(!customBtnPref2.equals("null")) {
-            addDynamicButton(customBtnPref2, 1);
+            addDynamicButton(customBtnPref2, 2);
         }
 
         customBtnPref3 = settings.getString("customBtn3", "null");
-        Log.d(TAG, "reloadData Pref: customBtnPref3 = " + customBtnPref3);
         if(!customBtnPref3.equals("null")) {
-            addDynamicButton(customBtnPref3, 2);
+            addDynamicButton(customBtnPref3, 3);
+        }
+
+        if(Debug) {
+            Log.d(TAG, "reloadData Pref: customBtnSumPref = " + customBtnSumPref +
+                    ", customBtnPref1 = " + customBtnPref1 +
+                    ", customBtnPref2 = " + customBtnPref2 +
+                    ", customBtnPref3 = " + customBtnPref3);
         }
     }
 
@@ -223,30 +210,27 @@ public class Main extends ActionBarActivity {
         int[] temp = new int[6]; //0 ~ 5
         for(int i = 0; i < mVolMember.size(); i++) {
             temp[i] = am.getStreamVolume(mVolMember.get(i).getAudioType(i));
-            Log.d(TAG, "temp[i] = " + temp[i]);
         }
 
         for(int i = 0; i < mVolMember.size(); i++) {
             am.setStreamVolume(mVolMember.get(i).getAudioType(i), 5, 0);
         }
-        Log.d(TAG, "System volume0 = " + am.getStreamVolume(AudioManager.STREAM_SYSTEM));
-//        am.setStreamVolume(AudioManager.STREAM_SYSTEM, 5, 0);
-        Log.d(TAG, "System volume1 = " + am.getStreamVolume(AudioManager.STREAM_SYSTEM));
 
         am.setStreamVolume(mVolMember.get(2).getAudioType(2), 1, 0);
 
         if(am.getStreamVolume(mVolMember.get(3).getAudioType(3)) == 1 &&
                 am.getStreamVolume(mVolMember.get(4).getAudioType(4)) == 1) {
-            Log.d(TAG, "Device mode 1: noti = ring = system");
             deviceMode = 1;
 
         } else if (am.getStreamVolume(mVolMember.get(3).getAudioType(3)) == 1) {
-            Log.d(TAG, "Device mode 2: noti = ring");
             deviceMode = 2;
 
         } else if (am.getStreamVolume(mVolMember.get(4).getAudioType(4)) == 1) {
-            Log.d(TAG, "Device mode 3: noti = system");
             deviceMode = 3;
+        }
+
+        if(Debug) {
+            Log.d(TAG, "scanDevice: deviceMode = " + deviceMode);
         }
 
         for(int i = 0; i < mVolMember.size(); i++) {
@@ -255,20 +239,23 @@ public class Main extends ActionBarActivity {
     }
 
     public void addDynamicButton(final String buttonName, int count) {
-        Log.d(TAG, "addDynamicButton(): " + buttonName);
+        if(Debug) {
+            Log.d(TAG, "addDynamicButton(): " + buttonName);
+        }
+
         mLinearCustom = (LinearLayout) findViewById(R.id.linear_custom);
 
-        mButton = (Button) getLayoutInflater().inflate(R.layout.custom_button, null);
+        View v = getLayoutInflater().inflate(R.layout.custom_view, null);
+        mButton = (Button) v.findViewById(R.id.btn_custom);
         mButton.setText(buttonName);
         mButton.setId(count);
 
-        mLinearCustom.addView(mButton);
-        mLinearCustom.addView(mView);
+        mLinearCustom.addView(v);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "addDynamicButton onClick(): " + v.getId() + "name = " + buttonName);
+//                Log.d(TAG, "addDynamicButton onClick(): " + v.getId() + "name = " + buttonName);
                 customSetVolume(buttonName);
             }
 
@@ -277,7 +264,7 @@ public class Main extends ActionBarActivity {
         mButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Log.d(TAG, "addDynamicButton onLongClick(): " + v.getId());
+//                Log.d(TAG, "addDynamicButton onLongClick(): " + v.getId());
                 actionLongClick(v, buttonName);
 
 //                ViewGroup layout = (ViewGroup) v.getParent();
@@ -310,15 +297,20 @@ public class Main extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 ViewGroup layout = (ViewGroup) buttonView.getParent();
-                if(null != layout) {
+                ViewGroup master = (ViewGroup)  layout.getParent();
+                if(null != layout && null != master) {
                     for(int i = 0; i < 6; i++) {
-                        settings.edit().remove("[" + name + "]" + i).commit();
+                        settings.edit().remove("[" + name + "]" + i).apply();
+//                    for safety only  as you are doing onClick
+//                    layout.removeView(buttonView.get);
+                        master.removeView(layout);
                     }
-                    //for safety only  as you are doing onClick
-                    layout.removeView(buttonView);
+
                     customBtnSumPref--;
-                    Log.d(TAG, "customBtnSumPref = " + customBtnSumPref);
-                    //apply() ? commit() ?
+                    if(Debug) {
+                        Log.d(TAG, "customBtnSumPref = " + customBtnSumPref);
+                        Log.d(TAG, "Setting null id = " + buttonView.getId());
+                    }
                     settings.edit().putString("customBtn" + buttonView.getId(), "null").apply();
                     settings.edit().putInt("customBtuSum", customBtnSumPref).apply();
 
@@ -339,7 +331,7 @@ public class Main extends ActionBarActivity {
 
     public void addVolume(int type) {
         if(mVolMember.get(3).getCurrent(3) == 0 && (type == 2 || type == 4)) {
-            Toast.makeText(getApplicationContext(), "Vibrate mode, can not add volume!",
+            Toast.makeText(getApplicationContext(), getString(R.string.vibrste_warnning),
                            Toast.LENGTH_SHORT).show();
             return;
         }
@@ -362,8 +354,7 @@ public class Main extends ActionBarActivity {
         if(mVolMember.get(type).getCurrent(type) > 0) {
             mVolMember.get(type).current--;
         }
-        am.setStreamVolume(mVolMember.get(type).getAudioType(type),
-                mVolMember.get(type).current, 0);
+        am.setStreamVolume(mVolMember.get(type).getAudioType(type), mVolMember.get(type).current, 0);
         mVolMember.get(type).seekBar.setProgress(mVolMember.get(type).current);
         mVolMember.get(type).textView.setText(mVolMember.get(type).current + "/" +
                 mVolMember.get(type).max);
@@ -507,7 +498,7 @@ public class Main extends ActionBarActivity {
     public void actionfeedback() {
         final FeedbackDialog mFeedbackDialog = new FeedbackDialog(this, getWindow().getDecorView().getRootView());
         mFeedbackDialog.setTitle(getString(R.string.dlg_feedback));
-        mFeedbackDialog.setMessage("This is test!");
+        mFeedbackDialog.setMessage(getString(R.string.dlg_feedback_message));
         mFeedbackDialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -561,27 +552,24 @@ public class Main extends ActionBarActivity {
 //        mSD.show();
 //    }
 
-    public void readSelectedData() {
-        Log.d(TAG, "readSelectedData");
-
-        startModeItemPref = Integer.parseInt(settings.getString("startModeItem", "0"));
-        Log.d(TAG, "Pref1: startModeItemPref = " + startModeItemPref);
-
-        stopModeItemPref = Integer.parseInt(settings.getString("stopModeItem", "0"));
-        Log.d(TAG, "Pef2: stopModeItemPref = " + stopModeItemPref);
-
-        startTimeItemPref = Integer.parseInt(settings.getString("startTimeItem", "0"));
-        Log.d(TAG, "Pref3: startTimeItemPref = " + startTimeItemPref);
-
-        stopTimeItemPref = Integer.parseInt(settings.getString("stopTimeItem", "0"));
-        Log.d(TAG, "Pref4: stopTimeModePref = " + stopTimeItemPref);
-    }
+//    public void readSelectedData() {
+//        Log.d(TAG, "readSelectedData");
+//
+//        startModeItemPref = Integer.parseInt(settings.getString("startModeItem", "0"));
+//        Log.d(TAG, "Pref1: startModeItemPref = " + startModeItemPref);
+//
+//        stopModeItemPref = Integer.parseInt(settings.getString("stopModeItem", "0"));
+//        Log.d(TAG, "Pef2: stopModeItemPref = " + stopModeItemPref);
+//
+//        startTimeItemPref = Integer.parseInt(settings.getString("startTimeItem", "0"));
+//        Log.d(TAG, "Pref3: startTimeItemPref = " + startTimeItemPref);
+//
+//        stopTimeItemPref = Integer.parseInt(settings.getString("stopTimeItem", "0"));
+//        Log.d(TAG, "Pref4: stopTimeModePref = " + stopTimeItemPref);
+//    }
 
     public void saveVolumeMode(String modeName) {
         for(int i = 0; i < mVolMember.size(); i++) {
-
-//            int getVolume = am.getStreamVolume(mVolMember.get(i).getAudioType(i));
-            Log.d(TAG, "saveVolumeMode - i = " + mVolMember.get(i).getCurrent(i));
             //record all type volume with modeName,  avoid the same mode name
             settings.edit()
                     .putInt("[" + modeName + "]" + i, mVolMember.get(i).getCurrent(i))
@@ -597,7 +585,6 @@ public class Main extends ActionBarActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.btn_outdoor:
-                    Log.d(TAG, "volumeMode onclick - btn_outdoor");
 
                     //set ring first i = 3, avoid noti can not up volume.
                     for(int i = 3; i < 5; i++) {
@@ -618,7 +605,6 @@ public class Main extends ActionBarActivity {
                     break;
 
                 case R.id.btn_mute:
-                    Log.d(TAG, "volumeMode onclick - btn_mute");
                     for(int i = 2; i < 5; i++) {
                         am.setStreamVolume(mVolMember.get(i).getAudioType(i), 0, 0);
                         mVolMember.get(i).seekBar.setProgress(0);
@@ -629,7 +615,6 @@ public class Main extends ActionBarActivity {
 
 
                 case R.id.btn_custom:
-                    Log.d(TAG, "volumeMode onclick - btn_custom");
                     final CustomDialog dialog = new CustomDialog(getApplicationContext(),
                             getWindow().getDecorView().getRootView());
                     dialog.setTitle(getString(R.string.dlg_custom));
@@ -638,11 +623,15 @@ public class Main extends ActionBarActivity {
                         @Override
                         public void onClick(View v) {
                             String customEditName = dialog.getEditTextName();
-                            Log.d(TAG, "customEditName = " + customEditName);
-                            Log.d(TAG, "customEditName = " + (customEditName.length()));
+                            if(Debug) {
+                                Log.d(TAG, "customEditName = " + customEditName);
+                                Log.d(TAG, "customEditName = " + (customEditName.length()));
+                            }
 
                             if(customEditName.equals("")) {
-                                Log.d(TAG, "invalid name");
+                                if(Debug) {
+                                    Log.d(TAG, "invalid name");
+                                }
                                 Toast.makeText(getApplicationContext(),
                                         getString(R.string.cust_name_error), Toast.LENGTH_LONG).show();
 
@@ -659,8 +648,10 @@ public class Main extends ActionBarActivity {
                             } else {
                                 customBtnSumPref++;
                                 addDynamicButton(customEditName, customBtnSumPref);
+                                if(Debug) {
+                                    Log.d(TAG, "customBtnSumPref = " + customBtnSumPref);
+                                }
 
-                                Log.d(TAG, "customBtnSumPref = " + customBtnSumPref);
                                 //apply() ? commit() ?
                                 settings.edit()
                                         .putString("customBtn" + customBtnSumPref, customEditName)
@@ -698,7 +689,6 @@ public class Main extends ActionBarActivity {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             progressValue = progress;
-            Log.d(TAG, "onProgressChanged: " + progress);
             switch(seekBar.getId()) {
                 case R.id.sb_music:
                     am.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
