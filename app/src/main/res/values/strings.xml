@@ -19,7 +19,7 @@
     <string name="text_exit">離開</string>
 
 
-
+    <string name="menu_custom">自訂</string>
     <string name="menu_about">說明</string>
     <string name="menu_feedback">回饋</string>
     <string name="menu_schedule">排程</string>

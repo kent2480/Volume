@@ -3,7 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/shape_bg">
+    android:background="@drawable/shape_bg"
+    android:layout_margin="10dp">
 
     <TextView
         android:id="@+id/CustomDlgTitle"
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:textColor="@color/black"/>
 
@@ -23,7 +25,8 @@
         android:id="@+id/CustomDlgContentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"/>
+        android:orientation="vertical"
+        android:layout_margin="3dp" />
 
     <TextView
         android:id="@+id/CustomDlgContentText"
@@ -31,13 +34,13 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:text="@string/dlg_text"
-        android:paddingLeft="10dp"/>
+        android:text="@string/dlg_text"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,8 +49,7 @@
             android:textColor="@color/black"
             android:textSize="15sp"
             android:text="@string/dlg_name"
-            android:layout_centerVertical="true"
-            android:paddingLeft="10dp"/>
+            android:layout_centerVertical="true"/>
 
         <EditText
             android:layout_width="250dp"
@@ -62,13 +64,10 @@
 
     </RelativeLayout>
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="5dp" >
+        android:orientation="horizontal" >
 
         <Button
             android:id="@+id/CustomDlgButtonOK"
@@ -85,7 +84,6 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:textColor="@color/grey"/>
-
     </LinearLayout>
 
 </LinearLayout>

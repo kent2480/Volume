@@ -31,7 +31,7 @@ public class CustomDialog {
     }
 
     public void setTitle(String title) {
-        TextView mTitle = (TextView)mRootLayout.findViewById(R.id.CustomDlgTitle);
+        TextView mTitle = (TextView) mRootLayout.findViewById(R.id.CustomDlgTitle);
         mTitle.setText(title);
     }
 
@@ -48,18 +48,18 @@ public class CustomDialog {
     }
 
     public void setNegativeButton(String text,View.OnClickListener listener ) {
-        final Button buttonCancel = (Button)mRootLayout.findViewById(R.id.CustomDlgButtonCancel);
+        final Button buttonCancel = (Button) mRootLayout.findViewById(R.id.CustomDlgButtonCancel);
         buttonCancel.setText(text);
         buttonCancel.setOnClickListener(listener);
         buttonCancel.setVisibility(View.VISIBLE);
     }
 
-    public void setContentLayout(View layout) {
-        TextView mMessage = (TextView)mRootLayout.findViewById(R.id.CustomDlgContentText);
-        mMessage.setVisibility(View.GONE);
-        LinearLayout contentLayout = (LinearLayout)mRootLayout.findViewById(R.id.CustomDlgContentView);
-        contentLayout.addView(layout);
-    }
+//    public void setContentLayout(View layout) {
+//        TextView mMessage = (TextView)mRootLayout.findViewById(R.id.CustomDlgContentText);
+//        mMessage.setVisibility(View.GONE);
+//        LinearLayout contentLayout = (LinearLayout)mRootLayout.findViewById(R.id.CustomDlgContentView);
+//        contentLayout.addView(layout);
+//    }
 
     public void setLayoutParams(int width, int height) {
         mLayoutParams.width  = width;
@@ -75,10 +75,10 @@ public class CustomDialog {
 
     public void show() {
         if(mPopupWindow == null) {
-            mPopupWindow = new PopupWindow(mRootLayout, mLayoutParams.width,mLayoutParams.height);
+            mPopupWindow = new PopupWindow(mRootLayout, mLayoutParams.width, mLayoutParams.height);
             mPopupWindow.setFocusable(true);
         }
-        mPopupWindow.showAtLocation(mParent, Gravity.CENTER, Gravity.CENTER, Gravity.CENTER);
+          mPopupWindow.showAtLocation(mParent, Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 
     public void dismiss() {

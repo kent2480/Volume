@@ -410,17 +410,6 @@
                     style="@style/btnStyleBlackpearl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_custom"
-                    android:id="@+id/btn_custom"/>
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="wrap_content"/>
-
-                <Button
-                    style="@style/btnStyleBlackpearl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/text_exit"
                     android:id="@+id/btn_exit"/>
 

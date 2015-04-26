@@ -18,7 +18,7 @@
     <string name="text_custom">custom</string>
     <string name="text_exit">exit</string>
 
-
+    <string name="menu_custom">Custom</string>
     <string name="menu_about">About</string>
     <string name="menu_feedback">Feedback</string>
     <string name="menu_schedule">Schedule</string>

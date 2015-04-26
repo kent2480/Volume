@@ -3,20 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".Main">
 
     <item
+        android:id="@+id/action_custom"
+        android:title="@string/menu_custom"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_about"
         android:title="@string/menu_about"
-        android:orderInCategory="100"
+        android:orderInCategory="200"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_feedback"
         android:title="@string/menu_feedback"
-        android:orderInCategory="200"
+        android:orderInCategory="300"
         app:showAsAction="never" />
 
-    <!--<item-->
-        <!--android:id="@+id/action_about"-->
-        <!--android:title="About"-->
-        <!--android:orderInCategory="300"-->
-        <!--app:showAsAction="never" />-->
 </menu>

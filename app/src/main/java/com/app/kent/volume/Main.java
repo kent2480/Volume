@@ -6,6 +6,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +25,7 @@ public class Main extends ActionBarActivity {
     private final static boolean Debug = false;
     private AudioManager am;
 
-    private Button outdoor, mute, custom, exit;
+    private Button outdoor, mute, exit;
 //    private int startModeItemPref, stopModeItemPref, startTimeItemPref, stopTimeItemPref;
     private LinearLayout mLinearCustom;
     private int customBtnSumPref = 0;
@@ -34,6 +35,8 @@ public class Main extends ActionBarActivity {
     private VolumeMember music, alarm, noti, ring, system, voice;
     private ArrayList<VolumeMember> mVolMember;
     private int deviceMode = 0;
+
+    private DisplayMetrics dm;
 
     // https://www.iconfinder.com/iconsets/slim-square-icons-basics
     //private ImageView musicUp, musicDown; // using imageView onClick properties
@@ -62,21 +65,6 @@ public class Main extends ActionBarActivity {
         scanDevice();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(Debug) {
-            Log.d(TAG, "onStart");
-        }
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        if(Debug) {
-            Log.d(TAG, "onRestart");
-        }
-    }
 
     @Override
     protected void onResume() {
@@ -87,30 +75,7 @@ public class Main extends ActionBarActivity {
         if (Debug) {
             Log.d(TAG, "onResume");
         }
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if(Debug) {
-            Log.d(TAG, "onPause");
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(Debug) {
-            Log.d(TAG, "onStop");
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(Debug) {
-            Log.d(TAG, "onDestroy");
-        }
     }
 
     public void createMember() {
@@ -149,10 +114,27 @@ public class Main extends ActionBarActivity {
 
         outdoor = (Button) findViewById(R.id.btn_outdoor);
         mute = (Button) findViewById(R.id.btn_mute);
-        custom = (Button) findViewById(R.id.btn_custom);
         exit = (Button) findViewById(R.id.btn_exit);
 
         settings = PreferenceManager.getDefaultSharedPreferences(this);
+
+        dm = getApplicationContext().getResources().getDisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+
+
+        Log.d(TAG, "Height = " + dm.heightPixels + ", width = " + dm.widthPixels);
+        Log.d(TAG, "music.seekBar.getWidth() = " + music.seekBar.getWidth());
+        Log.d(TAG, "music.textView.getWidth(); = " + music.textView.getWidth());
+    }
+
+
+    @Override
+    public void onWindowFocusChanged(boolean focus) {
+        super.onWindowFocusChanged(focus);
+        Log.d(TAG, "music.seekBar.getWidth() = " + music.seekBar.getWidth());
+        Log.d(TAG, "music.textView.getWidth(); = " + music.textView.getWidth());
+        
     }
 
     public void getVolumeInfo() {
@@ -172,7 +154,6 @@ public class Main extends ActionBarActivity {
     public void setListener() {
         outdoor.setOnClickListener(new volumeMode());
         mute.setOnClickListener(new volumeMode());
-        custom.setOnClickListener(new volumeMode());
         exit.setOnClickListener(new volumeMode());
 
         for (int i = 0; i < mVolMember.size(); i++) {
@@ -456,6 +437,10 @@ public class Main extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_custom:
+                actionCustiom();
+                return true;
+
             case R.id.action_about:
                 actionAbout();
                 return true;
@@ -472,6 +457,67 @@ public class Main extends ActionBarActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void actionCustiom() {
+        final CustomDialog mCustomDialog = new CustomDialog(this, getWindow().getDecorView().getRootView());
+
+        mCustomDialog.setTitle(getString(R.string.dlg_custom));
+        mCustomDialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String customEditName = mCustomDialog.getEditTextName();
+                if(Debug) {
+                    Log.d(TAG, "customEditName = " + customEditName);
+                    Log.d(TAG, "customEditName = " + (customEditName.length()));
+                }
+
+                if(customEditName.equals("")) {
+                    if(Debug) {
+                        Log.d(TAG, "invalid name");
+                    }
+                    Toast.makeText(getApplicationContext(),
+                            getString(R.string.cust_name_error), Toast.LENGTH_LONG).show();
+
+                } else if(customEditName.length() > 10) {
+                    Toast.makeText(getApplicationContext(),
+                            getString(R.string.cust_name_length), Toast.LENGTH_LONG).show();
+
+                } else if(customBtnSumPref >= 3) {
+                    Toast.makeText(getApplicationContext(),
+                            getString(R.string.cust_amount), Toast.LENGTH_LONG).show();
+
+                    // smae name check!
+
+                } else {
+                    customBtnSumPref++;
+                    addDynamicButton(customEditName, customBtnSumPref);
+                    if(Debug) {
+                        Log.d(TAG, "customBtnSumPref = " + customBtnSumPref);
+                    }
+
+                    //apply() ? commit() ?
+                    settings.edit()
+                            .putString("customBtn" + customBtnSumPref, customEditName)
+                            .apply();
+
+                    settings.edit()
+                            .putInt("customBtuSum", customBtnSumPref)
+                            .apply();
+
+                    saveVolumeMode(customEditName);
+                }
+                mCustomDialog.dismiss();
+            }
+        });
+
+        mCustomDialog.setNegativeButton(getString(R.string.dlg_cancel), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCustomDialog.dismiss();
+            }
+        });
+        mCustomDialog.show();
     }
 
 
@@ -611,69 +657,6 @@ public class Main extends ActionBarActivity {
                         mVolMember.get(i).textView.setText(mVolMember.get(i).getCurrent(i) + "/" +
                                                            mVolMember.get(i).max);
                     }
-                    break;
-
-
-                case R.id.btn_custom:
-                    final CustomDialog dialog = new CustomDialog(getApplicationContext(),
-                            getWindow().getDecorView().getRootView());
-                    dialog.setTitle(getString(R.string.dlg_custom));
-
-                    dialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            String customEditName = dialog.getEditTextName();
-                            if(Debug) {
-                                Log.d(TAG, "customEditName = " + customEditName);
-                                Log.d(TAG, "customEditName = " + (customEditName.length()));
-                            }
-
-                            if(customEditName.equals("")) {
-                                if(Debug) {
-                                    Log.d(TAG, "invalid name");
-                                }
-                                Toast.makeText(getApplicationContext(),
-                                        getString(R.string.cust_name_error), Toast.LENGTH_LONG).show();
-
-                            } else if(customEditName.length() > 10) {
-                                Toast.makeText(getApplicationContext(),
-                                        getString(R.string.cust_name_length), Toast.LENGTH_LONG).show();
-
-                            } else if(customBtnSumPref >= 3) {
-                                Toast.makeText(getApplicationContext(),
-                                        getString(R.string.cust_amount), Toast.LENGTH_LONG).show();
-
-                            // smae name check!
-
-                            } else {
-                                customBtnSumPref++;
-                                addDynamicButton(customEditName, customBtnSumPref);
-                                if(Debug) {
-                                    Log.d(TAG, "customBtnSumPref = " + customBtnSumPref);
-                                }
-
-                                //apply() ? commit() ?
-                                settings.edit()
-                                        .putString("customBtn" + customBtnSumPref, customEditName)
-                                        .apply();
-
-                                settings.edit()
-                                        .putInt("customBtuSum", customBtnSumPref)
-                                        .apply();
-
-                                saveVolumeMode(customEditName);
-                            }
-                            dialog.dismiss();
-                        }
-                    });
-
-                    dialog.setNegativeButton(getString(R.string.dlg_cancel), new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-                    dialog.show();
                     break;
 
                 case R.id.btn_exit:
