@@ -18,7 +18,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.ads.AdSize;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class Main extends ActionBarActivity {
     private final static boolean Debug = false;
     private AudioManager am;
     private Button outdoor, mute, exit;
-    private AdView adView;
+    private AdView mAdView;
     private long MY_AD_UNIT_ID = 7642106680902262L; //pub-7642106680902262
 //    private int startModeItemPref, stopModeItemPref, startTimeItemPref, stopTimeItemPref;
 
@@ -75,7 +75,6 @@ public class Main extends ActionBarActivity {
         if (Debug) {
             Log.d(TAG, "onResume");
         }
-
     }
 
     public void createMember() {
@@ -94,7 +93,9 @@ public class Main extends ActionBarActivity {
         mVolMember.add(system);
         mVolMember.add(voice);
 
-        adView = new AdView(this, AdSize.BANNER, MY_AD_UNIT_ID);
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
     }
 
@@ -119,7 +120,6 @@ public class Main extends ActionBarActivity {
         outdoor = (Button) findViewById(R.id.btn_outdoor);
         mute = (Button) findViewById(R.id.btn_mute);
         exit = (Button) findViewById(R.id.btn_exit);
-
         settings = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
