@@ -6,7 +6,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.DisplayMetrics;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,25 +18,25 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 
 public class Main extends ActionBarActivity {
     private final static String TAG = "VolumeMain";
     private final static boolean Debug = false;
     private AudioManager am;
-
     private Button outdoor, mute, exit;
+    private AdView adView;
+    private long MY_AD_UNIT_ID = 7642106680902262L; //pub-7642106680902262
 //    private int startModeItemPref, stopModeItemPref, startTimeItemPref, stopTimeItemPref;
-    private LinearLayout mLinearCustom;
+
     private int customBtnSumPref = 0;
-    private String customBtnPref1, customBtnPref2, customBtnPref3;
     private SharedPreferences settings;
-    private Button mButton;
     private VolumeMember music, alarm, noti, ring, system, voice;
     private ArrayList<VolumeMember> mVolMember;
     private int deviceMode = 0;
-
-    private DisplayMetrics dm;
 
     // https://www.iconfinder.com/iconsets/slim-square-icons-basics
     //private ImageView musicUp, musicDown; // using imageView onClick properties
@@ -93,9 +93,13 @@ public class Main extends ActionBarActivity {
         mVolMember.add(ring);
         mVolMember.add(system);
         mVolMember.add(voice);
+
+        adView = new AdView(this, AdSize.BANNER, MY_AD_UNIT_ID);
+
     }
 
     public void initView() {
+
         am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         music.seekBar = (SeekBar) findViewById(R.id.sb_music);
@@ -117,24 +121,6 @@ public class Main extends ActionBarActivity {
         exit = (Button) findViewById(R.id.btn_exit);
 
         settings = PreferenceManager.getDefaultSharedPreferences(this);
-
-        dm = getApplicationContext().getResources().getDisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-
-
-        Log.d(TAG, "Height = " + dm.heightPixels + ", width = " + dm.widthPixels);
-        Log.d(TAG, "music.seekBar.getWidth() = " + music.seekBar.getWidth());
-        Log.d(TAG, "music.textView.getWidth(); = " + music.textView.getWidth());
-    }
-
-
-    @Override
-    public void onWindowFocusChanged(boolean focus) {
-        super.onWindowFocusChanged(focus);
-        Log.d(TAG, "music.seekBar.getWidth() = " + music.seekBar.getWidth());
-        Log.d(TAG, "music.textView.getWidth(); = " + music.textView.getWidth());
-        
     }
 
     public void getVolumeInfo() {
@@ -164,17 +150,17 @@ public class Main extends ActionBarActivity {
     public void reloadData() {
         customBtnSumPref = settings.getInt("customBtuSum", 0);
 
-        customBtnPref1 = settings.getString("customBtn1", "null");
+        String customBtnPref1 = settings.getString("customBtn1", "null");
         if(!customBtnPref1.equals("null")) {
             addDynamicButton(customBtnPref1, 1);
         }
 
-        customBtnPref2 = settings.getString("customBtn2", "null");
+        String customBtnPref2 = settings.getString("customBtn2", "null");
         if(!customBtnPref2.equals("null")) {
             addDynamicButton(customBtnPref2, 2);
         }
 
-        customBtnPref3 = settings.getString("customBtn3", "null");
+        String customBtnPref3 = settings.getString("customBtn3", "null");
         if(!customBtnPref3.equals("null")) {
             addDynamicButton(customBtnPref3, 3);
         }
@@ -224,10 +210,10 @@ public class Main extends ActionBarActivity {
             Log.d(TAG, "addDynamicButton(): " + buttonName);
         }
 
-        mLinearCustom = (LinearLayout) findViewById(R.id.linear_custom);
+        LinearLayout mLinearCustom = (LinearLayout) findViewById(R.id.linear_custom);
 
         View v = getLayoutInflater().inflate(R.layout.custom_view, null);
-        mButton = (Button) v.findViewById(R.id.btn_custom);
+        Button mButton = (Button) v.findViewById(R.id.btn_custom);
         mButton.setText(buttonName);
         mButton.setId(count);
 
@@ -270,7 +256,7 @@ public class Main extends ActionBarActivity {
     }
 
     public void actionLongClick(final View buttonView, final String name) {
-        final AboutDialog dialog = new AboutDialog(this, getWindow().getDecorView().getRootView());
+        final LongClickDialog dialog = new LongClickDialog(this, getWindow().getDecorView().getRootView());
         dialog.setTitle(getString(R.string.dlg_long_title));
         dialog.setMessage(getString(R.string.dlg_long_text));
 
@@ -325,7 +311,7 @@ public class Main extends ActionBarActivity {
 
         mVolMember.get(type).seekBar.setProgress(mVolMember.get(type).getCurrent(type));
         mVolMember.get(type).textView.setText(mVolMember.get(type).getCurrent(type) + "/" +
-                                              mVolMember.get(type).max);
+                mVolMember.get(type).max);
 
         checkDeviceMode(type);
     }
@@ -449,10 +435,6 @@ public class Main extends ActionBarActivity {
                 actionfeedback();
                 return true;
 
-//            case R.id.action_about:
-//                actionAbout();
-//                return true;
-
             default:
                 break;
         }
@@ -524,7 +506,7 @@ public class Main extends ActionBarActivity {
     public void actionAbout() {
         final AboutDialog mAboutDialog = new AboutDialog(this, getWindow().getDecorView().getRootView());
         mAboutDialog.setTitle(getString(R.string.dlg_about));
-        mAboutDialog.setMessage(getString(R.string.dlg_about_message));
+        mAboutDialog.setMessage(Html.fromHtml(getString(R.string.dlg_about_message)));
         mAboutDialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -544,7 +526,7 @@ public class Main extends ActionBarActivity {
     public void actionfeedback() {
         final FeedbackDialog mFeedbackDialog = new FeedbackDialog(this, getWindow().getDecorView().getRootView());
         mFeedbackDialog.setTitle(getString(R.string.dlg_feedback));
-        mFeedbackDialog.setMessage(getString(R.string.dlg_feedback_message));
+        mFeedbackDialog.setMessage(Html.fromHtml(getString(R.string.dlg_feedback_message)));
         mFeedbackDialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
             @Override
             public void onClick(View v) {

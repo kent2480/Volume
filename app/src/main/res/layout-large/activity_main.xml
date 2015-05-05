@@ -46,11 +46,12 @@
 
 
                 <SeekBar
-                    android:layout_width="350dp"
+                    android:layout_width="500dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_music"
                     android:layout_toRightOf="@+id/relative1"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="25dp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -105,11 +106,12 @@
                 </RelativeLayout>
 
                 <SeekBar
-                    android:layout_width="350dp"
+                    android:layout_width="500dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_alarm"
                     android:layout_toRightOf="@+id/relative2"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="25dp"/>/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -164,11 +166,12 @@
                 </RelativeLayout>
 
                 <SeekBar
-                    android:layout_width="350dp"
+                    android:layout_width="500dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_ring"
                     android:layout_toRightOf="@+id/relative4"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="25dp"/>/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -224,11 +227,12 @@
                 </RelativeLayout>
 
                 <SeekBar
-                    android:layout_width="350dp"
+                    android:layout_width="500dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_noti"
                     android:layout_toRightOf="@+id/relative3"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="25dp"/>/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -284,11 +288,12 @@
 
 
                 <SeekBar
-                    android:layout_width="350dp"
+                    android:layout_width="500dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_system"
                     android:layout_toRightOf="@+id/relative5"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="25dp"/>/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -345,11 +350,12 @@
 
 
                 <SeekBar
-                    android:layout_width="350dp"
+                    android:layout_width="500dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_voice"
                     android:layout_toRightOf="@+id/relative6"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="25dp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -419,6 +425,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/linear_custom">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linear_ad">
 
             </LinearLayout>
 

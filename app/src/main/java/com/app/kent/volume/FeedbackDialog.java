@@ -1,6 +1,7 @@
 package com.app.kent.volume;
 
 import android.content.Context;
+import android.text.Spanned;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +33,7 @@ public class FeedbackDialog {
         mTitle.setText(title);
     }
 
-    public void setMessage(String message) {
+    public void setMessage(Spanned message) {
         TextView mMessage = (TextView)mRootLayout.findViewById(R.id.FeedDlgContentText);
         mMessage.setText(message);
     }

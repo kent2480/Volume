@@ -27,7 +27,10 @@
     <string name="dlg_about">說明:</string>
     <string name="dlg_ok">確定</string>
     <string name="dlg_cancel">取消</string>
-    <string name="dlg_about_message">音量控制會依據裝置不同而改變，部份手機會將通知與系統音量共用</string>
+    <string name="dlg_about_message">
+        <![CDATA[
+        音量控制會依據裝置不同而改變，部份手機會將通知與系統音量共用，而當裝置將鈴聲音量調整為0時，系統會自動設為震動模式，同時通知與系統也會自動調整為0。<br>
+        ]]></string>
 
     <string name="dlg_custom">新增自訂按鈕:</string>
     <string name="dlg_text">儲存目前音量狀態?</string>
@@ -35,7 +38,12 @@
 
 
     <string name="dlg_feedback">回饋:</string>
-    <string name="dlg_feedback_message">錯誤回報與相關建議:\r\n 作者Blog: </string>
+    <string name="dlg_feedback_message">
+        <![CDATA[
+        錯誤回報與相關建議:<br>
+        作者Blog:<br>
+        <a href="http://www.dotblogs.com.tw/kent2480/archive/2015/04/13/151039.aspx">dot blogs - kent2480 </a><br>
+        ]]></string>
 
     <string name="cust_name_error">請輸入有效名稱!</string>
     <string name="cust_name_length">請縮短名稱長度(需小於10字元)</string>
