@@ -39,11 +39,12 @@
 
     <string name="dlg_feedback">回饋:</string>
     <string name="dlg_feedback_message">
-        <![CDATA[
-        錯誤回報與相關建議:<br>
-        作者Blog:<br>
-        <a href="http://www.dotblogs.com.tw/kent2480/archive/2015/04/13/151039.aspx">dot blogs - kent2480 </a><br>
-        ]]></string>
+        錯誤回報與相關建議:\r\n
+        Blog: \r\n
+        http://www.dotblogs.com.tw/kent2480/archive/2015/04/13/151039.aspx\r\n
+        信箱:\r\n
+        androidapkent@gmail.com
+    </string>
 
     <string name="cust_name_error">請輸入有效名稱!</string>
     <string name="cust_name_length">請縮短名稱長度(需小於10字元)</string>

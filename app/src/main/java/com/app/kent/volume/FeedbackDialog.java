@@ -1,7 +1,6 @@
 package com.app.kent.volume;
 
 import android.content.Context;
-import android.text.Spanned;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +21,9 @@ public class FeedbackDialog {
 
     FeedbackDialog (Context context, View parent) {
         mParent = parent;
-        LayoutInflater mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mRootLayout = (LinearLayout)mInflater.inflate(R.layout.feedback_dialog, null);
+        LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context
+                .LAYOUT_INFLATER_SERVICE);
+        mRootLayout = (LinearLayout) mInflater.inflate(R.layout.feedback_dialog, null);
         mLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
     }
@@ -33,20 +33,25 @@ public class FeedbackDialog {
         mTitle.setText(title);
     }
 
-    public void setMessage(Spanned message) {
-        TextView mMessage = (TextView)mRootLayout.findViewById(R.id.FeedDlgContentText);
+    public void setMessage(String message) {
+        TextView mMessage = (TextView) mRootLayout.findViewById(R.id.FeedDlgContentText);
+        mMessage.setText(message);
+    }
+
+    public void setTest(String message) {
+        TextView mMessage = (TextView) mRootLayout.findViewById(R.id.FeedDlgContentTest);
         mMessage.setText(message);
     }
 
     public void setPositiveButton(String text,View.OnClickListener listener ) {
-        final Button buttonOK = (Button)mRootLayout.findViewById(R.id.FeedDlgButtonOK);
+        final Button buttonOK = (Button) mRootLayout.findViewById(R.id.FeedDlgButtonOK);
         buttonOK.setText(text);
         buttonOK.setOnClickListener(listener);
         buttonOK.setVisibility(View.VISIBLE);
     }
 
     public void setNegativeButton(String text,View.OnClickListener listener ) {
-        final Button buttonCancel = (Button)mRootLayout.findViewById(R.id.FeedDlgButtonCancel);
+        final Button buttonCancel = (Button) mRootLayout.findViewById(R.id.FeedDlgButtonCancel);
         buttonCancel.setText(text);
         buttonCancel.setOnClickListener(listener);
         buttonCancel.setVisibility(View.VISIBLE);

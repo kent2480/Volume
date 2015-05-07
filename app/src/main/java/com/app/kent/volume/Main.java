@@ -39,30 +39,30 @@ public class Main extends ActionBarActivity {
     private int deviceMode = 0;
 
     // https://www.iconfinder.com/iconsets/slim-square-icons-basics
-    //private ImageView musicUp, musicDown; // using imageView onClick properties
+        //private ImageView musicUp, musicDown; // using imageView onClick properties
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (Debug) {
-            Log.d(TAG, "onCreate");
-        }
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            if (Debug) {
+                Log.d(TAG, "onCreate");
+            }
 
-        setContentView(R.layout.activity_main);
-        createMember();
-        initView();
+            setContentView(R.layout.activity_main);
+            createMember();
+            initView();
 
-        getVolumeInfo();
-        initSeekBar();
-        setListener();
+            getVolumeInfo();
+            initSeekBar();
+            setListener();
 
 //        Log.d(TAG, "start activity1");
 //        Intent mIntent = new Intent();
 //        mIntent.setClass(Main.this, Welcome.class);
 //        startActivity(mIntent);
 
-        reloadData();
-        scanDevice();
+            reloadData();
+            scanDevice();
     }
 
 
@@ -96,7 +96,6 @@ public class Main extends ActionBarActivity {
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
     }
 
     public void initView() {
@@ -526,7 +525,8 @@ public class Main extends ActionBarActivity {
     public void actionfeedback() {
         final FeedbackDialog mFeedbackDialog = new FeedbackDialog(this, getWindow().getDecorView().getRootView());
         mFeedbackDialog.setTitle(getString(R.string.dlg_feedback));
-        mFeedbackDialog.setMessage(Html.fromHtml(getString(R.string.dlg_feedback_message)));
+        mFeedbackDialog.setMessage(getString(R.string.dlg_feedback_message));
+        //mFeedbackDialog.setTest("https://www.google.com.tw/");
         mFeedbackDialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
