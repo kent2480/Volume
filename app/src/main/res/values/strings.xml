@@ -49,7 +49,7 @@
     <string name="cust_name_error">請輸入有效名稱!</string>
     <string name="cust_name_length">請縮短名稱長度(需小於10字元)</string>
     <string name="cust_amount">最多新增三個自訂按鈕，可長按已新增按鈕移除</string>
-    <string name="vibrste_warnning">震動模式無法調高通知或系統音量，請先調高鈴聲音量來解除震動模式</string>
+    <string name="vibrste_warnning">震動模式無法調高系統音量，請先調高鈴聲音量來解除震動模式</string>
 
 
     <string name="dlg_long_title">移除自訂按鈕:</string>

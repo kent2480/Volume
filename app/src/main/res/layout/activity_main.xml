@@ -199,64 +199,6 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/relative3">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="@string/text_noti"
-                        android:id="@+id/tvNoti"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="value"
-                        android:layout_below="@id/tvNoti"
-                        android:id="@+id/tv_Notification"/>
-
-                </RelativeLayout>
-
-                <SeekBar
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sb_noti"
-                    android:layout_toRightOf="@+id/relative3"
-                    android:layout_centerVertical="true"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/iv_noti_up"
-                    android:src="@drawable/up"
-                    android:onClick="adjustVolume"
-                    android:layout_alignParentRight="true"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/iv_noti_down"
-                    android:src="@drawable/down"
-                    android:onClick="adjustVolume"
-                    android:layout_below="@+id/iv_noti_up"
-                    android:layout_alignParentRight="true"/>
-
-                <View
-                    android:background="#000000"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/iv_noti_down"/>
-
-            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -27,12 +27,10 @@ public class VolumeMember {
             case 1:
                 return AudioManager.STREAM_ALARM;
             case 2:
-                return AudioManager.STREAM_NOTIFICATION;
-            case 3:
                 return AudioManager.STREAM_RING;
-            case 4:
+            case 3:
                 return  AudioManager.STREAM_SYSTEM;
-            case 5:
+            case 4:
                 return AudioManager.STREAM_VOICE_CALL;
             default:
                 return -1;
