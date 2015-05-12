@@ -29,19 +29,19 @@
     <string name="dlg_cancel">取消</string>
     <string name="dlg_about_message">
         <![CDATA[
-        音量控制會依據裝置不同而改變，部份手機會將通知與系統音量共用，而當裝置將鈴聲音量調整為0時，系統會自動設為震動模式，同時通知與系統也會自動調整為0。<br>
+        音量控制會依據裝置不同而改變，部份手機會將通知與系統音量共用，而當裝置將鈴聲音量調整為0時，系統會自動設為震動模式，同時通知與系統也會自動調整為0<br>
         ]]></string>
 
     <string name="dlg_custom">新增自訂按鈕:</string>
     <string name="dlg_text">儲存目前音量狀態?</string>
-    <string name="dlg_name">名稱</string>
+    <string name="dlg_name">名稱:</string>
 
 
     <string name="dlg_feedback">回饋:</string>
     <string name="dlg_feedback_message">
-        錯誤回報與相關建議:\r\n
+        錯誤回報與相關建議請留言blog或信箱，感謝您的意見\r\n\r\n
         Blog: \r\n
-        http://www.dotblogs.com.tw/kent2480/archive/2015/04/13/151039.aspx\r\n
+        http://www.dotblogs.com.tw/kent2480/archive/2015/04/13/151039.aspx\r\n\r\n
         信箱:\r\n
         androidapkent@gmail.com
     </string>

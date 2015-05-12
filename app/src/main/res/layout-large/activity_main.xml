@@ -52,7 +52,9 @@
                     android:id="@+id/sb_music"
                     android:layout_toRightOf="@+id/relative1"
                     android:layout_centerVertical="true"
-                    android:paddingLeft="25dp"/>
+                    android:paddingLeft="25dp" />
+
+                <!--  -->
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -271,11 +273,13 @@
                     android:id="@+id/relative5">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="10dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="@string/text_sys"
+                        android:text="system:"
                         android:id="@+id/tvSystem" />
+
+
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -294,7 +298,7 @@
                     android:id="@+id/sb_system"
                     android:layout_toRightOf="@+id/relative5"
                     android:layout_centerVertical="true"
-                    android:paddingLeft="25dp"/>/>
+                    android:paddingLeft="25dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"

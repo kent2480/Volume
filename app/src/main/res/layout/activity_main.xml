@@ -30,7 +30,7 @@
                     android:id="@+id/relative1">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="51dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@string/text_music"
@@ -48,11 +48,12 @@
 
 
                 <SeekBar
-                    android:layout_width="250dp"
+                    android:layout_width="251dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_music"
                     android:layout_toRightOf="@+id/relative1"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -91,7 +92,7 @@
                     android:id="@+id/relative2">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="51dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@string/text_alarm"
@@ -108,11 +109,12 @@
                 </RelativeLayout>
 
                 <SeekBar
-                    android:layout_width="250dp"
+                    android:layout_width="251dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_alarm"
                     android:layout_toRightOf="@+id/relative2"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -151,7 +153,7 @@
                     android:id="@+id/relative4">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="51dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@string/text_ring"
@@ -168,11 +170,12 @@
                 </RelativeLayout>
 
                 <SeekBar
-                    android:layout_width="250dp"
+                    android:layout_width="251dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_ring"
                     android:layout_toRightOf="@+id/relative4"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -211,7 +214,7 @@
                     android:id="@+id/relative5">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="51dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@string/text_sys"
@@ -229,11 +232,12 @@
 
 
                 <SeekBar
-                    android:layout_width="250dp"
+                    android:layout_width="251dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_system"
                     android:layout_toRightOf="@+id/relative5"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -272,7 +276,7 @@
                     android:id="@+id/relative6">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="51dp"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="@string/text_voice"
@@ -290,11 +294,12 @@
 
 
                 <SeekBar
-                    android:layout_width="250dp"
+                    android:layout_width="251dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/sb_voice"
                     android:layout_toRightOf="@+id/relative6"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
