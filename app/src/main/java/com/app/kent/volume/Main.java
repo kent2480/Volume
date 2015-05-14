@@ -1,10 +1,12 @@
 package com.app.kent.volume;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -390,6 +393,10 @@ public class Main extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_notification:
+                actionNotification();
+                return true;
+
             case R.id.action_custom:
                 actionCustiom();
                 return true;
@@ -406,6 +413,31 @@ public class Main extends ActionBarActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void actionNotification() {
+        RemoteViews contentViews = new RemoteViews(getPackageName(), R.layout.custom_notification);
+
+        //通?控件的Id?置?性
+        contentViews.setImageViewResource(R.id.imageNo, R.drawable.ic_launcher);
+        contentViews.setTextViewText(R.id.titleNo, "title");
+        contentViews.setTextViewText(R.id.textNo, "content");
+
+//        Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+//
+//        PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, intent,
+//                        PendingIntent.FLAG_CANCEL_CURRENT);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+                Main.this).setSmallIcon(R.drawable.ic_launcher)
+                .setContentTitle("My notification")
+                .setTicker("new message");
+        mBuilder.setAutoCancel(true);
+
+//        mBuilder.setContentIntent(pendingIntent);
+        mBuilder.setContent(contentViews);
+        mBuilder.setAutoCancel(true);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(10, mBuilder.build());
     }
 
     public void actionCustiom() {
