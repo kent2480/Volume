@@ -24,17 +24,22 @@
         android:layout_below="@id/titleNo"
         android:layout_toRightOf="@id/imageNo" />
 
-    <Button
-        android:id="@+id/btn_up"
+
+    <ImageView
+        android:id="@+id/noti_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/titleNo"
+        android:src="@drawable/down"
+        android:layout_toRightOf="@+id/textNo"
+        android:text="down"/>
+
+
+    <ImageView
+        android:id="@+id/noti_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/up"
+        android:layout_toRightOf="@+id/noti_down"
         android:text="up"/>
 
-    <Button
-        android:id="@+id/btn_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/btn_up"
-        android:text="down"/>
 </RelativeLayout>

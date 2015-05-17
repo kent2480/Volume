@@ -1,7 +1,9 @@
 package com.app.kent.volume;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -417,16 +419,34 @@ public class Main extends ActionBarActivity {
 
     public void actionNotification() {
         RemoteViews contentViews = new RemoteViews(getPackageName(), R.layout.custom_notification);
-
-        //通?控件的Id?置?性
         contentViews.setImageViewResource(R.id.imageNo, R.drawable.ic_launcher);
         contentViews.setTextViewText(R.id.titleNo, "title");
         contentViews.setTextViewText(R.id.textNo, "content");
 
-//        Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-//
-//        PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0, intent,
-//                        PendingIntent.FLAG_CANCEL_CURRENT);
+        Intent intentDown = new Intent(Main.this, NotificationService.class);
+        intentDown.putExtra("mode", "down");
+        PendingIntent pendingDownIntent = PendingIntent.getService(Main.this, 0, intentDown,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        contentViews.setOnClickPendingIntent(R.id.noti_down, pendingDownIntent);
+
+        Intent intentUp = new Intent(Main.this, NotificationService.class);
+        intentUp.putExtra("mode", "up");
+        PendingIntent pendingUpIntent = PendingIntent.getService(Main.this, 1, intentUp,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        contentViews.setOnClickPendingIntent(R.id.noti_up, pendingUpIntent);
+
+//        Intent intentUp = new Intent(Main.this, NotificationService.class);
+//        intentUp.setAction("action.volume.up");
+//        PendingIntent mPentIntent1 = PendingIntent.getBroadcast(Main.this, 0, intentUp, PendingIntent.FLAG_UPDATE_CURRENT);
+//        contentViews.setOnClickPendingIntent(R.id.noti_up, mPentIntent1);
+
+Log.d(TAG, "intent");
+//        Intent intentDown = new Intent(Main.this, NotificationService.class);
+//        intentDown.setAction("action.volume.up");
+//        PendingIntent mPentIntent2 = PendingIntent.getBroadcast(Main.this, 1, intentDown, PendingIntent.FLAG_UPDATE_CURRENT);
+//        contentViews.setOnClickPendingIntent(R.id.noti_down, mPentIntent2);
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
                 Main.this).setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("My notification")
