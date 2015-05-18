@@ -52,30 +52,4 @@ public class NotificationService extends Service{
     public void onDestroy() {
         super.onDestroy();
     }
-
-//    public class MyReceiver extends BroadcastReceiver {
-//
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-//            Log.d(TAG, "onReceive");
-//
-//            String action = intent.getAction();
-//            if(action.equals("action.volume.up")) {
-//                Log.d(TAG, "up");
-//                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-//                        mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + 1,  0);
-//            } else if (action.equals("action.volume.down")) {
-//                Log.d(TAG, "down");
-//                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-//                        mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC) - 1,  0);
-//            }
-//        }
-//
-//        // constructor
-//        public MyReceiver(){
-//            Log.d(TAG, "MyReceiver");
-//
-//        }
-//    }
 }

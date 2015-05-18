@@ -18,6 +18,9 @@
     <string name="text_custom">custom</string>
     <string name="text_exit">exit</string>
 
+    <string name="noti_title">Volume</string>
+    <string name="noti_content">Click icon to set volume</string>
+
     <string name="menu_custom">Custom</string>
     <string name="menu_about">About</string>
     <string name="menu_feedback">Feedback</string>

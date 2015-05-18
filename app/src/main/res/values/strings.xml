@@ -18,6 +18,9 @@
     <string name="text_custom">自訂</string>
     <string name="text_exit">離開</string>
 
+    <string name="noti_title">音量</string>
+    <string name="noti_content">點擊圖片調整音量大小</string>
+
 
     <string name="menu_notification">通知</string>
     <string name="menu_custom">自訂</string>
@@ -30,7 +33,11 @@
     <string name="dlg_cancel">取消</string>
     <string name="dlg_about_message">
         <![CDATA[
-        音量控制會依據裝置不同而改變，部份手機會將通知與系統音量共用，而當裝置將鈴聲音量調整為0時，系統會自動設為震動模式，同時通知與系統也會自動調整為0<br>
+        (1) 通知: 產生系統通知訊息，可使用下拉狀態列點擊通知訊息內的圖案來調整音量<br><br>
+
+        (2) 自訂: 點擊後，儲存目前各音量狀態後，新增一個自訂義按鈕。長案自訂義按鈕移除<br><br>
+
+        (3) 音量控制會依據裝置不同而改變，部份手機會將通知與系統音量共用，而當裝置將鈴聲音量調整為0時，系統會自動設為震動模式，即系統也會自動調整為0<br>
         ]]></string>
 
     <string name="dlg_custom">新增自訂按鈕:</string>
@@ -59,6 +66,5 @@
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="title_activity_notification">Notification</string>
 
-    <string name="hello_world">Hello world!</string>
 
 </resources>

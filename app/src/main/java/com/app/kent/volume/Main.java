@@ -420,8 +420,8 @@ public class Main extends ActionBarActivity {
     public void actionNotification() {
         RemoteViews contentViews = new RemoteViews(getPackageName(), R.layout.custom_notification);
         contentViews.setImageViewResource(R.id.imageNo, R.drawable.ic_launcher);
-        contentViews.setTextViewText(R.id.titleNo, "title");
-        contentViews.setTextViewText(R.id.textNo, "content");
+        contentViews.setTextViewText(R.id.titleNo, getString(R.string.noti_title));
+        contentViews.setTextViewText(R.id.textNo, getString(R.string.noti_content));
 
         Intent intentDown = new Intent(Main.this, NotificationService.class);
         intentDown.putExtra("mode", "down");
@@ -436,24 +436,12 @@ public class Main extends ActionBarActivity {
 
         contentViews.setOnClickPendingIntent(R.id.noti_up, pendingUpIntent);
 
-//        Intent intentUp = new Intent(Main.this, NotificationService.class);
-//        intentUp.setAction("action.volume.up");
-//        PendingIntent mPentIntent1 = PendingIntent.getBroadcast(Main.this, 0, intentUp, PendingIntent.FLAG_UPDATE_CURRENT);
-//        contentViews.setOnClickPendingIntent(R.id.noti_up, mPentIntent1);
-
-Log.d(TAG, "intent");
-//        Intent intentDown = new Intent(Main.this, NotificationService.class);
-//        intentDown.setAction("action.volume.up");
-//        PendingIntent mPentIntent2 = PendingIntent.getBroadcast(Main.this, 1, intentDown, PendingIntent.FLAG_UPDATE_CURRENT);
-//        contentViews.setOnClickPendingIntent(R.id.noti_down, mPentIntent2);
-
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
                 Main.this).setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("My notification")
                 .setTicker("new message");
         mBuilder.setAutoCancel(true);
 
-//        mBuilder.setContentIntent(pendingIntent);
         mBuilder.setContent(contentViews);
         mBuilder.setAutoCancel(true);
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -546,7 +534,6 @@ Log.d(TAG, "intent");
         final FeedbackDialog mFeedbackDialog = new FeedbackDialog(this, getWindow().getDecorView().getRootView());
         mFeedbackDialog.setTitle(getString(R.string.dlg_feedback));
         mFeedbackDialog.setMessage(getString(R.string.dlg_feedback_message));
-        //mFeedbackDialog.setTest("https://www.google.com.tw/");
         mFeedbackDialog.setPositiveButton(getString(R.string.dlg_ok), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
