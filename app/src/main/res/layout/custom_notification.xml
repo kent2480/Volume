@@ -15,14 +15,15 @@
         android:id="@+id/titleNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/imageNo" />
+        android:layout_toRightOf="@id/imageNo"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/textNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/titleNo"
-        android:layout_toRightOf="@id/imageNo" />
+        android:layout_toRightOf="@id/imageNo"/>
 
 
     <LinearLayout

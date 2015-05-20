@@ -419,7 +419,7 @@ public class Main extends ActionBarActivity {
 
     public void actionNotification() {
         RemoteViews contentViews = new RemoteViews(getPackageName(), R.layout.custom_notification);
-        contentViews.setImageViewResource(R.id.imageNo, R.drawable.ic_launcher);
+        contentViews.setImageViewResource(R.id.imageNo, R.drawable.volume);
         contentViews.setTextViewText(R.id.titleNo, getString(R.string.noti_title));
         contentViews.setTextViewText(R.id.textNo, getString(R.string.noti_content));
 
@@ -436,14 +436,12 @@ public class Main extends ActionBarActivity {
 
         contentViews.setOnClickPendingIntent(R.id.noti_up, pendingUpIntent);
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
-                Main.this).setSmallIcon(R.drawable.ic_launcher)
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Main.this)
+                .setSmallIcon(R.drawable.volume)
                 .setContentTitle("My notification")
-                .setTicker("new message");
+                .setTicker(getString(R.string.noti_ticker));
         mBuilder.setAutoCancel(true);
-
         mBuilder.setContent(contentViews);
-        mBuilder.setAutoCancel(true);
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(10, mBuilder.build());
     }

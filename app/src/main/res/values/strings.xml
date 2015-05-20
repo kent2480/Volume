@@ -20,6 +20,7 @@
 
     <string name="noti_title">音量</string>
     <string name="noti_content">點擊圖片調整音量大小</string>
+    <string name="noti_ticker">下拉通知欄調整音量</string>
 
 
     <string name="menu_notification">通知</string>
