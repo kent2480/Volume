@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 public class Main extends ActionBarActivity {
     private final static String TAG = "VolumeMain";
     private final static boolean Debug = true;
+    private static boolean DEVICE_VERSION = false; // false < 5.0, true >= 5.0
     private AudioManager am;
     private Button outdoor, mute, exit;
     private AdView mAdView;
@@ -45,28 +47,29 @@ public class Main extends ActionBarActivity {
     // https://www.iconfinder.com/iconsets/slim-square-icons-basics
         //private ImageView musicUp, musicDown; // using imageView onClick properties
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            if (Debug) {
-                Log.d(TAG, "onCreate");
-            }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (Debug) {
+            Log.d(TAG, "onCreate");
+        }
 
-            setContentView(R.layout.activity_main);
-            createMember();
-            initView();
+        setContentView(R.layout.activity_main);
+        createMember();
+        initView();
+        checkDeviceVersion();
 
-            getVolumeInfo();
-            initSeekBar();
-            setListener();
+        getVolumeInfo();
+        initSeekBar();
+        setListener();
 
 //        Log.d(TAG, "start activity1");
 //        Intent mIntent = new Intent();
 //        mIntent.setClass(Main.this, Welcome.class);
 //        startActivity(mIntent);
 
-            reloadData();
-            scanDevice();
+        reloadData();
+        scanDevice();
     }
 
 
@@ -119,6 +122,16 @@ public class Main extends ActionBarActivity {
         mute = (Button) findViewById(R.id.btn_mute);
         exit = (Button) findViewById(R.id.btn_exit);
         settings = PreferenceManager.getDefaultSharedPreferences(this);
+    }
+
+    public void checkDeviceVersion() {
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            Log.d(TAG, "< 5.0 => " + Build.VERSION.SDK_INT);
+            DEVICE_VERSION = false;
+        } else {
+            Log.d(TAG, "> 5.0 => " + Build.VERSION.SDK_INT);
+            DEVICE_VERSION = true;
+        }
     }
 
     public void getVolumeInfo() {
@@ -256,9 +269,9 @@ public class Main extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 ViewGroup layout = (ViewGroup) buttonView.getParent();
-                ViewGroup master = (ViewGroup)  layout.getParent();
-                if(null != layout && null != master) {
-                    for(int i = 0; i < 5; i++) {
+                ViewGroup master = (ViewGroup) layout.getParent();
+                if (null != layout && null != master) {
+                    for (int i = 0; i < 5; i++) {
                         settings.edit().remove("[" + name + "]" + i).apply();
 //                    for safety only  as you are doing onClick
 //                    layout.removeView(buttonView.get);
@@ -266,7 +279,7 @@ public class Main extends ActionBarActivity {
                     }
 
                     customBtnSumPref--;
-                    if(Debug) {
+                    if (Debug) {
                         Log.d(TAG, "customBtnSumPref = " + customBtnSumPref);
                         Log.d(TAG, "Setting null id = " + buttonView.getId());
                     }
@@ -418,9 +431,15 @@ public class Main extends ActionBarActivity {
     }
 
     public void actionNotification() {
+
         RemoteViews contentViews = new RemoteViews(getPackageName(), R.layout.custom_notification);
-        contentViews.setImageViewResource(R.id.imageNo, R.drawable.volume);
+        contentViews.setImageViewResource(R.id.imageNo, R.drawable.volume_white);
+                //DEVICE_VERSION ? R.drawable.volume_black : R.drawable.volume_white);
         contentViews.setTextViewText(R.id.titleNo, getString(R.string.noti_title));
+        contentViews.setTextColor(R.id.titleNo,
+                DEVICE_VERSION ? getResources().getColor(R.color.black)
+                        : getResources().getColor(R.color.white));
+
         contentViews.setTextViewText(R.id.textNo, getString(R.string.noti_content));
 
         Intent intentDown = new Intent(Main.this, NotificationService.class);
@@ -437,13 +456,14 @@ public class Main extends ActionBarActivity {
         contentViews.setOnClickPendingIntent(R.id.noti_up, pendingUpIntent);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Main.this)
-                .setSmallIcon(R.drawable.volume)
-                .setContentTitle("My notification")
+                .setSmallIcon(DEVICE_VERSION ? R.drawable.volume_black : R.drawable.volume_white)
+                //.setContentTitle("My notification")
                 .setTicker(getString(R.string.noti_ticker));
         mBuilder.setAutoCancel(true);
         mBuilder.setContent(contentViews);
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(10, mBuilder.build());
+        Log.d(TAG, "actionNotification");
     }
 
     public void actionCustiom() {

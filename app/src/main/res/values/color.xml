@@ -2,10 +2,13 @@
 <resources>
     <color name="transparent">#9000</color>
 
+    <color name="white">#FFFFFF</color>
     <color name="navy">#000080</color>
     <color name="black">#000000</color>
     <color name="darkgrey">#A9A9A9</color>
-    <color name="grey">#808080</color>
+    <color name="grey1">#4c4c4c</color>
+
+    <color name="grey2">#808080</color>
     <color name="greylight">#E7E7E7</color>
 
 </resources>

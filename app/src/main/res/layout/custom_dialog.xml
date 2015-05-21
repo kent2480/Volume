@@ -19,7 +19,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/grey"/>
+        android:background="@color/grey2"/>
 
     <LinearLayout
         android:id="@+id/CustomDlgContentView"
@@ -76,7 +76,7 @@
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:textColor="@color/grey" />
+            android:textColor="@color/grey2" />
 
         <Button
             android:id="@+id/CustomDlgButtonCancel"
@@ -84,7 +84,7 @@
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:textColor="@color/grey"/>
+            android:textColor="@color/grey2"/>
     </LinearLayout>
 
 </LinearLayout>
