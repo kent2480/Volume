@@ -5,6 +5,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -433,7 +435,8 @@ public class Main extends ActionBarActivity {
     public void actionNotification() {
 
         RemoteViews contentViews = new RemoteViews(getPackageName(), R.layout.custom_notification);
-        contentViews.setImageViewResource(R.id.imageNo, R.drawable.volume_white);
+        //contentViews.setImageViewResource(R.id.imageNo, R.drawable.volume_white);
+        contentViews.setImageViewResource(R.id.imageNo, R.drawable.ic_launcher);
                 //DEVICE_VERSION ? R.drawable.volume_black : R.drawable.volume_white);
         contentViews.setTextViewText(R.id.titleNo, getString(R.string.noti_title));
         contentViews.setTextColor(R.id.titleNo,
@@ -452,12 +455,15 @@ public class Main extends ActionBarActivity {
         intentUp.putExtra("mode", "up");
         PendingIntent pendingUpIntent = PendingIntent.getService(Main.this, 1, intentUp,
                 PendingIntent.FLAG_UPDATE_CURRENT);
-
         contentViews.setOnClickPendingIntent(R.id.noti_up, pendingUpIntent);
 
+
+        Bitmap btm = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Main.this)
-                .setSmallIcon(DEVICE_VERSION ? R.drawable.volume_black : R.drawable.volume_white)
-                //.setContentTitle("My notification")
+                //.setSmallIcon(DEVICE_VERSION ? R.drawable.volume_black : R.drawable.volume_white)
+                //.setLargeIcon(btm)
+                .setSmallIcon(R.drawable.ic_action_volume)
+                        //.setContentTitle("My notification")
                 .setTicker(getString(R.string.noti_ticker));
         mBuilder.setAutoCancel(true);
         mBuilder.setContent(contentViews);
@@ -526,7 +532,6 @@ public class Main extends ActionBarActivity {
         });
         mCustomDialog.show();
     }
-
 
     public void actionAbout() {
         final AboutDialog mAboutDialog = new AboutDialog(this, getWindow().getDecorView().getRootView());
