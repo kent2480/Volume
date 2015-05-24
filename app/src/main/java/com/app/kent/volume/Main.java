@@ -1,17 +1,11 @@
 package com.app.kent.volume;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.AudioManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.util.Log;
@@ -21,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RemoteViews;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +26,7 @@ import java.util.ArrayList;
 
 public class Main extends ActionBarActivity {
     private final static String TAG = "VolumeMain";
-    private final static boolean Debug = true;
+    private final static boolean Debug = false;
     private static boolean DEVICE_VERSION = false; // false < 5.0, true >= 5.0
     private AudioManager am;
     private Button outdoor, mute, exit;
@@ -59,7 +52,7 @@ public class Main extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         createMember();
         initView();
-        checkDeviceVersion();
+        //checkDeviceVersion();
 
         getVolumeInfo();
         initSeekBar();
@@ -126,15 +119,15 @@ public class Main extends ActionBarActivity {
         settings = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
-    public void checkDeviceVersion() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            Log.d(TAG, "< 5.0 => " + Build.VERSION.SDK_INT);
-            DEVICE_VERSION = false;
-        } else {
-            Log.d(TAG, "> 5.0 => " + Build.VERSION.SDK_INT);
-            DEVICE_VERSION = true;
-        }
-    }
+//    public void checkDeviceVersion() {
+//        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+//            Log.d(TAG, "< 5.0 => " + Build.VERSION.SDK_INT);
+//            DEVICE_VERSION = false;
+//        } else {
+//            Log.d(TAG, "> 5.0 => " + Build.VERSION.SDK_INT);
+//            DEVICE_VERSION = true;
+//        }
+//    }
 
     public void getVolumeInfo() {
         for (int i = 0; i < mVolMember.size(); i++) {
@@ -255,7 +248,7 @@ public class Main extends ActionBarActivity {
         //int name="[a1]0" value="1"
         for(int i = 0; i < 5; i++) {
             mVolMember.get(i).current = settings.getInt("[" + name + "]" + i, 0);
-            Log.d(TAG, "customSetVolume: name" + i + " = " + mVolMember.get(i).current);
+            //Log.d(TAG, "customSetVolume: name" + i + " = " + mVolMember.get(i).current);
             mVolMember.get(i).seekBar.setProgress(mVolMember.get(i).current);
             mVolMember.get(i).textView.setText(mVolMember.get(i).current + "/" +
                                                mVolMember.get(i).max);
@@ -433,43 +426,35 @@ public class Main extends ActionBarActivity {
     }
 
     public void actionNotification() {
+        Intent intentMiddle = new Intent(Main.this, Middle.class);
+        startService(intentMiddle);
 
-        RemoteViews contentViews = new RemoteViews(getPackageName(), R.layout.custom_notification);
-        //contentViews.setImageViewResource(R.id.imageNo, R.drawable.volume_white);
-        contentViews.setImageViewResource(R.id.imageNo, R.drawable.ic_launcher);
-                //DEVICE_VERSION ? R.drawable.volume_black : R.drawable.volume_white);
-        contentViews.setTextViewText(R.id.titleNo, getString(R.string.noti_title));
-        contentViews.setTextColor(R.id.titleNo,
-                DEVICE_VERSION ? getResources().getColor(R.color.black)
-                        : getResources().getColor(R.color.white));
-
-        contentViews.setTextViewText(R.id.textNo, getString(R.string.noti_content));
-
-        Intent intentDown = new Intent(Main.this, NotificationService.class);
-        intentDown.putExtra("mode", "down");
-        PendingIntent pendingDownIntent = PendingIntent.getService(Main.this, 0, intentDown,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        contentViews.setOnClickPendingIntent(R.id.noti_down, pendingDownIntent);
-
-        Intent intentUp = new Intent(Main.this, NotificationService.class);
-        intentUp.putExtra("mode", "up");
-        PendingIntent pendingUpIntent = PendingIntent.getService(Main.this, 1, intentUp,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        contentViews.setOnClickPendingIntent(R.id.noti_up, pendingUpIntent);
-
-
-        Bitmap btm = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Main.this)
-                //.setSmallIcon(DEVICE_VERSION ? R.drawable.volume_black : R.drawable.volume_white)
-                //.setLargeIcon(btm)
-                .setSmallIcon(R.drawable.ic_action_volume)
-                        //.setContentTitle("My notification")
-                .setTicker(getString(R.string.noti_ticker));
-        mBuilder.setAutoCancel(true);
-        mBuilder.setContent(contentViews);
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(10, mBuilder.build());
-        Log.d(TAG, "actionNotification");
+//        RemoteViews contentViews = new RemoteViews(getPackageName(), R.layout.custom_notification);
+//        contentViews.setImageViewResource(R.id.imageNo, R.drawable.ic_launcher); //big icon
+//        contentViews.setTextViewText(R.id.titleNo, getString(R.string.noti_title));
+//
+//        contentViews.setTextViewText(R.id.textNo, getString(R.string.noti_content));
+//
+//        Intent intentDown = new Intent(Main.this, NotificationService.class);
+//        intentDown.putExtra("mode", "down");
+//        PendingIntent pendingDownIntent = PendingIntent.getService(Main.this, 0, intentDown,
+//                PendingIntent.FLAG_UPDATE_CURRENT);
+//        contentViews.setOnClickPendingIntent(R.id.noti_down, pendingDownIntent);
+//
+//        Intent intentUp = new Intent(Main.this, NotificationService.class);
+//        intentUp.putExtra("mode", "up");
+//        PendingIntent pendingUpIntent = PendingIntent.getService(Main.this, 1, intentUp,
+//                PendingIntent.FLAG_UPDATE_CURRENT);
+//        contentViews.setOnClickPendingIntent(R.id.noti_up, pendingUpIntent);
+//
+//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Main.this)
+//                .setSmallIcon(R.drawable.ic_action_volume) // notification icon
+//                .setTicker(getString(R.string.noti_ticker)); // notification message
+//        mBuilder.setAutoCancel(true);
+//        mBuilder.setContent(contentViews);
+//        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        mNotificationManager.notify(10, mBuilder.build());
+//        Log.d(TAG, "actionNotification");
     }
 
     public void actionCustiom() {

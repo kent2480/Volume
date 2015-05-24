@@ -10,21 +10,23 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="10dp"
-        android:textColor="#000000"/>
+        />
 
     <TextView
         android:id="@+id/titleNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/imageNo"
-        android:textColor="#4c4c4c"/>
+        android:textColor="#000000"
+        />
 
     <TextView
         android:id="@+id/textNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/titleNo"
-        android:layout_toRightOf="@id/imageNo"/>
+        android:layout_toRightOf="@id/imageNo"
+        android:textColor="#4c4c4c"/>
 
 
     <LinearLayout
@@ -32,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textNo"
         android:orientation="horizontal"
+        android:layout_centerVertical="true"
         >
 
         <ImageView
@@ -39,8 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/down"
-            android:layout_weight="1.0"
-            android:text="down"/>
+            android:layout_weight="1.0"/>
 
 
         <ImageView
@@ -49,8 +51,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/up"
             android:layout_toRightOf="@+id/noti_down"
-            android:layout_weight="1.0"
-            android:text="up"/>
+            android:layout_weight="1.0"/>
 
     </LinearLayout>
 

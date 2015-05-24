@@ -3,8 +3,6 @@
 
     <string name="app_name">Volume</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_volumn_sync">VolumnSync</string>
-    <string name="title_activity_welcome">Welcome</string>
 
     <string name="text_music">Music:</string>
     <string name="text_alarm">Alarm:</string>
@@ -20,7 +18,9 @@
 
     <string name="noti_title">Volume</string>
     <string name="noti_content">Click icon to set volume</string>
+    <string name="noti_ticker">Pull actionBar to set volume</string>
 
+    <string name="menu_notification">Notification</string>
     <string name="menu_custom">Custom</string>
     <string name="menu_about">About</string>
     <string name="menu_feedback">Feedback</string>
@@ -29,21 +29,38 @@
     <string name="dlg_about">About:</string>
     <string name="dlg_ok">Ok</string>
     <string name="dlg_cancel">Cancel</string>
-    <string name="dlg_about_message">音量控制會依據裝置不同而改變，部份手機會將通知與系統音量共用</string>
+    <string name="dlg_about_message">
+        <![CDATA[
+        (1) Notification: Create notification a message. You can pull down actionBar to set volume of music by click the volume button.<br><br>
+
+        (2) Custom: Create a custom button to save the all kinds of audio types at present. And using long click to remove the button.<br><br>
+
+        (3) According to different device, the setting of volume will be different. Some of device use the same control for rign tone and system. And when the ring tone was set to 0, the device will be become to vibration mode, so the volume of system will be set to 0.<br>
+        ]]></string>
 
     <string name="dlg_custom">Add custom button:</string>
     <string name="dlg_text">Save current status of volume?</string>
     <string name="dlg_name">Name</string>
 
     <string name="dlg_feedback">Feedback:</string>
-    <string name="dlg_feedback_message">錯誤回報與相關問題建議:\r\n Blog:</string>
+    <string name="dlg_feedback_message">
+        Report related bug or better idea to my blog or e-mail, thanks for your help.\r\n\r\n
+        Blog: \r\n
+        http://www.dotblogs.com.tw/kent2480/archive/2015/04/13/151039.aspx\r\n\r\n
+        Mail:\r\n
+        androidapkent@gmail.com
+    </string>
 
     <string name="cust_name_error">Please input valid name!</string>
     <string name="cust_name_length">Please shorten the length of name(less than 10 char)</string>
     <string name="cust_amount">Only three custom buttons. You can long click old custom button to remove.</string>
-    <string name="vibrste_warnning">震動模式無法調高通知或系統音量，請先調高鈴聲音量來解除震動模式</string>
+    <string name="vibrste_warnning">In vibration mode, the volume of system will be lock. You must to unlock vibration mode by step up ring tone.</string>
 
     <string name="dlg_long_title">Remove custom button:</string>
-    <string name="dlg_long_text">Click Ok to remove</string>
+    <string name="dlg_long_text">Click Ok to remove　this custom button.</string>
+
+    <!--<string name="banner_ad_unit_id">ca-app-pub-7642106680902262/7123658636</string>-->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="title_activity_notification">Notification</string>
 
 </resources>

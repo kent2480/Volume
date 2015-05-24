@@ -1,395 +1,389 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Main">
+    tools:context=".Main">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Volume Controll - xlarge-land"
-            android:id="@+id/textView" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false">
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp">
-                <TextView
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/relative1">
+
+                    <TextView
+                        android:layout_width="51dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/text_music"
+                        android:id="@+id/tvMusic" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="value"
+                        android:layout_below="@id/tvMusic"
+                        android:id="@+id/tv_Music" />
+
+                </RelativeLayout>
+
+
+                <SeekBar
+                    android:layout_width="450dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Music:"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="value"
-                    android:id="@+id/tv_Music" />
-            </LinearLayout>
+                    android:id="@+id/sb_music"
+                    android:layout_toRightOf="@+id/relative1"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"/>
 
-
-            <SeekBar
-                android:layout_width="450dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/seekBar"
-                android:paddingTop="15dp"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentRight="true">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_music_up"
                     android:src="@drawable/up"
-                    android:onClick="adjustVolume"/>
+                    android:onClick="adjustVolume"
+                    android:layout_alignParentRight="true" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_music_down"
                     android:src="@drawable/down"
-                    android:onClick="adjustVolume"/>
-            </LinearLayout>
+                    android:onClick="adjustVolume"
+                    android:layout_below="@+id/iv_music_up"
+                    android:layout_alignParentRight="true" />
+
+                <View
+                    android:background="#000000"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/iv_music_down" />
+
+            </RelativeLayout>
 
 
-        </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <View
-            android:background="#000000"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/seekBar" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp">
-                <TextView
+                <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Alarm:"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="value"
-                    android:id="@+id/tv_Alarm" />
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/relative2">
 
-            <SeekBar
-                android:layout_width="450dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:paddingTop="15dp"
-                android:id="@+id/seekBar2"/>
+                    <TextView
+                        android:layout_width="51dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/text_alarm"
+                        android:id="@+id/tvAlarm" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="value"
+                        android:layout_below="@id/tvAlarm"
+                        android:id="@+id/tv_Alarm" />
+
+                </RelativeLayout>
+
+                <SeekBar
+                    android:layout_width="450dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sb_alarm"
+                    android:layout_toRightOf="@+id/relative2"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"/>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_alarm_up"
-                    android:src="@drawable/up" />
+                    android:src="@drawable/up"
+                    android:onClick="adjustVolume"
+                    android:layout_alignParentRight="true" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_alarm_down"
-                    android:src="@drawable/down" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:src="@drawable/down"
+                    android:onClick="adjustVolume"
+                    android:layout_below="@+id/iv_alarm_up"
+                    android:layout_alignParentRight="true" />
 
-        <View
-            android:background="#000000"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/seekBar2" />
+                <View
+                    android:background="#000000"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/iv_alarm_down" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            </RelativeLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <TextView
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/relative4">
+
+                    <TextView
+                        android:layout_width="51dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/text_ring"
+                        android:id="@+id/tvRing" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="value"
+                        android:layout_below="@id/tvRing"
+                        android:id="@+id/tv_Ring" />
+
+                </RelativeLayout>
+
+                <SeekBar
+                    android:layout_width="450dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Notification:"/>
+                    android:id="@+id/sb_ring"
+                    android:layout_toRightOf="@+id/relative4"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="value"
-                    android:id="@+id/tv_Notification" />
-            </LinearLayout>
-
-            <SeekBar
-                android:layout_width="450dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:paddingTop="15dp"
-                android:id="@+id/seekBar3"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentRight="true">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/iv_noti_up"
-                    android:src="@drawable/up" />
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/iv_noti_down"
-                    android:src="@drawable/down" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <View
-            android:background="#000000"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/seekBar3" />
-
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Ring:"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="value"
-                    android:id="@+id/tv_Ring" />
-            </LinearLayout>
-
-            <SeekBar
-                android:layout_width="450dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:paddingTop="15dp"
-                android:id="@+id/seekBar4"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentRight="true">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_ring_up"
-                    android:src="@drawable/up" />
+                    android:src="@drawable/up"
+                    android:onClick="adjustVolume"
+                    android:layout_alignParentRight="true" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_ring_down"
-                    android:src="@drawable/down" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:src="@drawable/down"
+                    android:onClick="adjustVolume"
+                    android:layout_below="@+id/iv_ring_up"
+                    android:layout_alignParentRight="true" />
 
-        <View
-            android:background="#000000"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/seekBar4" />
+                <View
+                    android:background="#000000"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/iv_ring_down" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
+            </RelativeLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp">
 
-                <TextView
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/relative5">
+
+                    <TextView
+                        android:layout_width="51dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/text_sys"
+                        android:id="@+id/tvSystem" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="value"
+                        android:layout_below="@id/tvSystem"
+                        android:id="@+id/tv_System" />
+
+                </RelativeLayout>
+
+
+                <SeekBar
+                    android:layout_width="450dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="System:"/>
+                    android:id="@+id/sb_system"
+                    android:layout_toRightOf="@+id/relative5"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="value"
-                    android:id="@+id/tv_System" />
-            </LinearLayout>
-
-            <SeekBar
-                android:layout_width="450dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:paddingTop="15dp"
-                android:id="@+id/seekBar5"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentRight="true">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_sys_up"
-                    android:src="@drawable/up" />
+                    android:src="@drawable/up"
+                    android:onClick="adjustVolume"
+                    android:layout_alignParentRight="true" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_sys_down"
-                    android:src="@drawable/down" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:src="@drawable/down"
+                    android:onClick="adjustVolume"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/iv_sys_up" />
 
-        <View
-            android:background="#000000"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/seekBar5" />
+                <View
+                    android:background="#000000"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/iv_sys_down" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp">
+            </RelativeLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp">
 
-                <TextView
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/relative6">
+
+                    <TextView
+                        android:layout_width="51dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="@string/text_voice"
+                        android:id="@+id/tvVoice" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="value"
+                        android:layout_below="@id/tvVoice"
+                        android:id="@+id/tv_Voice" />
+
+                </RelativeLayout>
+
+
+                <SeekBar
+                    android:layout_width="450dp"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Voice:"/>
+                    android:id="@+id/sb_voice"
+                    android:layout_toRightOf="@+id/relative6"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="value"
-                    android:id="@+id/tv_Voice" />
-            </LinearLayout>
-
-            <SeekBar
-                android:layout_width="450dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:paddingTop="15dp"
-                android:id="@+id/seekBar6"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentRight="true">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_voice_up"
-                    android:src="@drawable/up" />
+                    android:src="@drawable/up"
+                    android:onClick="adjustVolume"
+                    android:layout_alignParentRight="true" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iv_voice_down"
-                    android:src="@drawable/down" />
+                    android:src="@drawable/down"
+                    android:onClick="adjustVolume"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/iv_voice_up" />
+
+                <View
+                    android:background="#000000"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/iv_voice_down" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp">
+
+                <Button
+                    style="@style/btnStyleBlackpearl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_outdoor"
+                    android:id="@+id/btn_outdoor" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    style="@style/btnStyleBlackpearl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_mute"
+                    android:id="@+id/btn_mute" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    style="@style/btnStyleBlackpearl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_exit"
+                    android:id="@+id/btn_exit" />
+
+
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linear_custom">
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
+    </ScrollView>
 
-        <View
-            android:background="#000000"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/seekBar6" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="outdoor"
-                android:id="@+id/button" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mute"
-                android:id="@+id/button2" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="custom"
-                android:id="@+id/button3" />
-        </LinearLayout>
-    </LinearLayout>
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id">
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>
