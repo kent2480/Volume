@@ -41,22 +41,17 @@ public class NotificationService extends Service{
         Bundle bundle = intent.getExtras();
         String mode = bundle.getString("mode");
         if (mode.equals("up")) {
-            Log.d(TAG, "up");
+//            Log.d(TAG, "up");
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                     mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC) + 1, 0);
             Log.d(TAG, "Volume up: " + mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
 
         } else if (mode.equals("down")) {
-            Log.d(TAG, "down");
+//            Log.d(TAG, "down");
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
                     mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC) - 1, 0);
             Log.d(TAG, "volume down: " + mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
         }
-
-//        Notification notification = new Notification(R.drawable.ic_action_volume, "wf update service is running", System.currentTimeMillis());
-//        mPendingIntent = PendingIntent.getService(this, 0, intent, 0);
-//        notification.setLatestEventInfo(this, "WF Update Service", "wf update service is running¡I", mPendingIntent);
-//        startForeground(0, notification);
 
         return super.onStartCommand(intent, flags, startId);
 
