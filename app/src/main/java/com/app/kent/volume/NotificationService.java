@@ -32,6 +32,12 @@ public class NotificationService extends Service{
 
         Log.d(TAG, "onStartCommand");
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        if(intent == null) {
+            Log.d(TAG, "intent = null");
+            return START_REDELIVER_INTENT;
+        }
+
         Bundle bundle = intent.getExtras();
         String mode = bundle.getString("mode");
         if (mode.equals("up")) {
