@@ -12,8 +12,8 @@
     <string name="text_voice">Voice:</string>
 
     <string name="text_outdoor">outdoor</string>
-    <string name="text_mute">mute</string>
-    <string name="text_custom">custom</string>
+    <string name="text_mute">silent</string>
+    <string name="text_virbate">virbate</string>
     <string name="text_exit">exit</string>
 
     <string name="noti_title">Volume</string>
@@ -55,6 +55,7 @@
     <string name="cust_name_length">Please shorten the length of name(less than 10 char)</string>
     <string name="cust_amount">Only three custom buttons. You can long click old custom button to remove.</string>
     <string name="vibrste_warnning">In vibration mode, the volume of system will be lock. You must to unlock vibration mode by step up ring tone.</string>
+    <string name="vibrate_support">Your device do not support vibrate mode</string>
 
     <string name="dlg_long_title">Remove custom button:</string>
     <string name="dlg_long_text">Click Ok to remove　this custom button.</string>

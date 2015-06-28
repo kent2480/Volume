@@ -27,9 +27,9 @@ import java.util.ArrayList;
 public class Main extends ActionBarActivity {
     private final static String TAG = "VolumeMain";
     private final static boolean Debug = false;
-    private static boolean DEVICE_VERSION = false; // false < 5.0, true >= 5.0
+    //private static boolean DEVICE_VERSION = false; // false < 5.0, true >= 5.0
     private AudioManager am;
-    private Button outdoor, mute, exit;
+    private Button outdoor, mute, vibrate, exit;
     private AdView mAdView;
 //    private int startModeItemPref, stopModeItemPref, startTimeItemPref, stopTimeItemPref;
 
@@ -115,7 +115,9 @@ public class Main extends ActionBarActivity {
 
         outdoor = (Button) findViewById(R.id.btn_outdoor);
         mute = (Button) findViewById(R.id.btn_mute);
+        vibrate = (Button) findViewById(R.id.btn_vibrate);
         exit = (Button) findViewById(R.id.btn_exit);
+
         settings = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
@@ -147,6 +149,8 @@ public class Main extends ActionBarActivity {
         outdoor.setOnClickListener(new volumeMode());
         mute.setOnClickListener(new volumeMode());
         exit.setOnClickListener(new volumeMode());
+        vibrate.setOnClickListener(new volumeMode());
+
 
         for (int i = 0; i < mVolMember.size(); i++) {
             mVolMember.get(i).seekBar.setOnSeekBarChangeListener(new seekBarChange());
@@ -643,17 +647,43 @@ public class Main extends ActionBarActivity {
                     mVolMember.get(3).seekBar.setProgress(mVolMember.get(3).max);
                     mVolMember.get(3).textView.setText(mVolMember.get(3).getCurrent(3) + "/" +
                             mVolMember.get(3).max);
-
-
                     break;
 
                 case R.id.btn_mute:
+                    Log.d(TAG, "ringerMode 1 = " + am.getRingerMode());
+
+                    int NexusMute = am.getStreamVolume(mVolMember.get(0).getAudioType(0));
+                    Log.d(TAG, "mute music = " + NexusMute);
+
                     for(int i = 2; i < 4; i++) {
                         am.setStreamVolume(mVolMember.get(i).getAudioType(i), 0, 0);
                         mVolMember.get(i).seekBar.setProgress(0);
                         mVolMember.get(i).textView.setText(mVolMember.get(i).getCurrent(i) + "/" +
                                                            mVolMember.get(i).max);
                     }
+                    am.setStreamVolume(mVolMember.get(0).getAudioType(0), NexusMute, 0);
+                    break;
+
+                case R.id.btn_vibrate:
+                    int NexusVibrate = am.getStreamVolume(mVolMember.get(0).getAudioType(0));
+                    Log.d(TAG, "mute music = " + NexusVibrate);
+
+                    am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+                    Log.d(TAG, "ringerMode vibrate = " + am.getRingerMode());
+
+                    if(am.getRingerMode() == 0) {
+                        Toast.makeText(getApplicationContext(), getString(R.string.vibrate_support),
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    for(int i = 2; i < 4; i++) {
+                        am.setStreamVolume(mVolMember.get(i).getAudioType(i), 0, 0);
+                        mVolMember.get(i).seekBar.setProgress(0);
+                        mVolMember.get(i).textView.setText(mVolMember.get(i).getCurrent(i) + "/" +
+                                                           mVolMember.get(i).max);
+                    }
+
+                    am.setStreamVolume(mVolMember.get(0).getAudioType(0), NexusVibrate, 0);
                     break;
 
                 case R.id.btn_exit:

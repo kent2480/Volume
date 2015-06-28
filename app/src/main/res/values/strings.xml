@@ -13,13 +13,12 @@
 
     <string name="text_outdoor">戶外</string>
     <string name="text_mute">靜音</string>
-    <string name="text_custom">自訂</string>
+    <string name="text_virbate">震動</string>
     <string name="text_exit">離開</string>
 
     <string name="noti_title">音量</string>
     <string name="noti_content">點擊圖片調整音量大小</string>
     <string name="noti_ticker">下拉通知欄調整音量</string>
-
 
     <string name="menu_notification">通知</string>
     <string name="menu_custom">自訂</string>
@@ -57,6 +56,8 @@
     <string name="cust_name_length">請縮短名稱長度(需小於10字元)</string>
     <string name="cust_amount">最多新增三個自訂按鈕，可長按已新增按鈕移除</string>
     <string name="vibrste_warnning">震動模式無法調高系統音量，請先調高鈴聲音量來解除震動模式</string>
+    <string name="vibrate_support">您的裝置不支援靜音震動模式</string>
+
 
 
     <string name="dlg_long_title">移除自訂按鈕:</string>
@@ -65,6 +66,5 @@
     <string name="banner_ad_unit_id">ca-app-pub-7642106680902262/7123658636</string>
     <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
     <string name="title_activity_notification">Notification</string>
-
 
 </resources>
