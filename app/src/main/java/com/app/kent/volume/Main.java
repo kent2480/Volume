@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.util.Log;
@@ -38,6 +40,7 @@ public class Main extends ActionBarActivity {
     private VolumeMember music, alarm, ring, system, voice;
     private ArrayList<VolumeMember> mVolMember;
     private int deviceMode = 0;
+    private Vibrator mVibrator;
 
     // https://www.iconfinder.com/iconsets/slim-square-icons-basics
         //private ImageView musicUp, musicDown; // using imageView onClick properties
@@ -181,6 +184,8 @@ public class Main extends ActionBarActivity {
                     ", customBtnPref2 = " + customBtnPref2 +
                     ", customBtnPref3 = " + customBtnPref3);
         }
+
+        checkVibrate();
     }
 
     //kent: music, alarm, ring, system, voice;
@@ -665,30 +670,48 @@ public class Main extends ActionBarActivity {
                     break;
 
                 case R.id.btn_vibrate:
-                    int NexusVibrate = am.getStreamVolume(mVolMember.get(0).getAudioType(0));
-                    Log.d(TAG, "mute music = " + NexusVibrate);
+                    mVibrator = ((Vibrator) getSystemService(VIBRATOR_SERVICE));
+                    Log.d(TAG, "Has vibrator ?  " + mVibrator.hasVibrator());
 
-                    am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-                    Log.d(TAG, "ringerMode vibrate = " + am.getRingerMode());
-
-                    if(am.getRingerMode() == 0) {
+                    if(mVibrator.hasVibrator()) {
+                        int vibrateValue = Settings.System.getInt(getApplicationContext().getContentResolver(),
+                                "vibrate_when_ringing", 0);
+                        if(vibrateValue == 0) {
+                            Settings.System.putInt(getApplicationContext().getContentResolver(),
+                                    "vibrate_when_ringing", 1);
+                            vibrate.setText(getString(R.string.text_virbate_on));
+                        } else {
+                            Settings.System.putInt(getApplicationContext().getContentResolver(),
+                                    "vibrate_when_ringing", 0);
+                            vibrate.setText(getString(R.string.text_virbate_off));
+                        }
+                    } else {
                         Toast.makeText(getApplicationContext(), getString(R.string.vibrate_support),
                                 Toast.LENGTH_SHORT).show();
                     }
-
-                    for(int i = 2; i < 4; i++) {
-                        am.setStreamVolume(mVolMember.get(i).getAudioType(i), 0, 0);
-                        mVolMember.get(i).seekBar.setProgress(0);
-                        mVolMember.get(i).textView.setText(mVolMember.get(i).getCurrent(i) + "/" +
-                                                           mVolMember.get(i).max);
-                    }
-
-                    am.setStreamVolume(mVolMember.get(0).getAudioType(0), NexusVibrate, 0);
                     break;
 
                 case R.id.btn_exit:
                     finish();
                     break;
+            }
+        }
+    }
+
+    private void checkVibrate() {
+        mVibrator = ((Vibrator) getSystemService(VIBRATOR_SERVICE));
+        Log.d(TAG, "Has vibrator ? " + mVibrator.hasVibrator());
+
+        if(mVibrator.hasVibrator()) {
+            int vibrateValue = Settings.System.getInt(getApplicationContext().getContentResolver(), "vibrate_when_ringing", 0);
+            if(vibrateValue == 0) {
+                Settings.System.putInt(getApplicationContext().getContentResolver(),
+                        "vibrate_when_ringing", 1);
+                vibrate.setText(getString(R.string.text_virbate_on));
+            } else {
+                Settings.System.putInt(getApplicationContext().getContentResolver(),
+                        "vibrate_when_ringing", 0);
+                vibrate.setText(getString(R.string.text_virbate_off));
             }
         }
     }

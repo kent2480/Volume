@@ -14,6 +14,8 @@
     <string name="text_outdoor">戶外</string>
     <string name="text_mute">靜音</string>
     <string name="text_virbate">震動</string>
+    <string name="text_virbate_on">震動/開</string>
+    <string name="text_virbate_off">震動/關</string>
     <string name="text_exit">離開</string>
 
     <string name="noti_title">音量</string>
@@ -42,7 +44,6 @@
     <string name="dlg_text">儲存目前音量狀態?</string>
     <string name="dlg_name">名稱:</string>
 
-
     <string name="dlg_feedback">回饋:</string>
     <string name="dlg_feedback_message">
         錯誤回報與相關建議請留言blog或信箱，感謝您的意見\r\n\r\n
@@ -57,8 +58,6 @@
     <string name="cust_amount">最多新增三個自訂按鈕，可長按已新增按鈕移除</string>
     <string name="vibrste_warnning">震動模式無法調高系統音量，請先調高鈴聲音量來解除震動模式</string>
     <string name="vibrate_support">您的裝置不支援靜音震動模式</string>
-
-
 
     <string name="dlg_long_title">移除自訂按鈕:</string>
     <string name="dlg_long_text">點擊"確定"移除自訂按鈕</string>

@@ -14,6 +14,8 @@
     <string name="text_outdoor">outdoor</string>
     <string name="text_mute">silent</string>
     <string name="text_virbate">virbate</string>
+    <string name="text_virbate_on">virbate/on</string>
+    <string name="text_virbate_off">virbate/off</string>
     <string name="text_exit">exit</string>
 
     <string name="noti_title">Volume</string>
